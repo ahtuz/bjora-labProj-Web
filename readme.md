@@ -8,7 +8,7 @@
 7. Wait.
 8. Wait.
 9. You can open your XAMPP while waiting, turn on Apache and MySQL.
-10. On browser, type `localhost/phpmyadmin`. and enter.
+10. On browser, type [title](localhost/phpmyadmin) and enter.
 11. Create new database "bjora" (without quotes).
 12. After the update finished, try to `php artisan migrate` in the text editor terminal.
 13. Finally, `php artisan serve`.
@@ -18,7 +18,7 @@
 1. `git fetch --all`
 2. `git reset --hard origin/master`
 
-# To push what you did:
+# To push what your work:
 > (I suppose you already in the project folder)
 1. `git add .`
 2. `git commit -m "write what you update here"`
