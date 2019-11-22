@@ -1,4 +1,4 @@
-#To Add the project to your PC:
+# To Add the project to your PC:
 1. Open terminal, cd to your desired folder
 2. type "git clone https://github.com/Ahtuz/bjora-labProj-Web.git" (without quotes).
 3. Wait.
@@ -13,11 +13,11 @@
 12. After the update finished, try to "php artisan migrate" in the text editor terminal.
 13. Finally, "php artisan serve"
 
-#To overwrite all data on pull: (I suppose you already in the project folder)
+# To overwrite all data on pull: (I suppose you already in the project folder)
 1. git fetch --all
 2. git reset --hard origin/master
 
-#To push what you did: (I suppose you already in the project folder)
+# To push what you did: (I suppose you already in the project folder)
 1. git add .
 2. git commit -m "write what you update here"
 3. git push origin master 
