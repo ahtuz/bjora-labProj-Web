@@ -15,10 +15,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/upload', function () {
-    return view('upload');
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
