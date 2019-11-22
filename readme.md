@@ -3,7 +3,7 @@
 2. type `git clone https://github.com/Ahtuz/bjora-labProj-Web.git`.
 3. Wait.
 4. Open the project folder in your favorite text editor.
-5. Open terminal again, be sure to navigate to the project folder.
+5. Open terminal again, be sure to navigate to the project folder (by using `cd` command).
 6. type `composer update --verbose --prefer-dist`.
 7. Wait.
 8. Wait.
