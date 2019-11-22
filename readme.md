@@ -14,3 +14,8 @@ To Add the project to your PC:
 12. Create new database "bjora" (without quotes).
 13. After the update finished, try to "php artisan migrate" in the text editor terminal.
 14. Finally, "php artisan serve"
+
+To overwrite all data on pull:
+
+1. git fetch --all
+2. git reset --hard origin/master
