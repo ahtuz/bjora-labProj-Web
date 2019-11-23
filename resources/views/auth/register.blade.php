@@ -114,9 +114,9 @@
 
                             <div class="col-md-6">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input @error('profile_picture') is-invalid @enderror" id="profile_picture">
+                                    <input type="file" name="profile_picture" class="custom-file-input @error('profile_picture') is-invalid @enderror" id="profile_picture">
                                     <label class="custom-file-label" for="profile_picture">
-                                    <div id="profile_picture-filename"></div>
+                                        <div id="profile_picture-filename"></div>
                                     </label>
                                 </div>
 
