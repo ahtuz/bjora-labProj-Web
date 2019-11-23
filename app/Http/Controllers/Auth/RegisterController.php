@@ -69,16 +69,12 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         
-        dd($data['profile_picture']->getClientOriginalName());
+        // dd($data['profile_picture']->getClientOriginalName());
 
-        $file = $request->file('product_image');
-        $prodImageName = $data['profile_picture']->getClientOriginalName();
-        $product->product_image = $prodImageName;
-        $data['profile_picture']->save();
+        $file = $data['profile_picture'];
+        $filename = $data['profile_picture']->getClientOriginalName();
 
-        $prodImage->storeAs('images', $prodImageName, 'public');
-
-        return redirect()->route('view_products');
+        $file->storeAs('images', $filename, 'public');
 
         return User::create([
             'username' => $data['username'],
