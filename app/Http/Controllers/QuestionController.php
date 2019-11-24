@@ -55,7 +55,7 @@ class QuestionController extends Controller
      * @param  \Bjora\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function show(Question $question)
+    public function show($id)
     {
         //
     }
@@ -66,9 +66,10 @@ class QuestionController extends Controller
      * @param  \Bjora\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $question)
+    public function edit($id)
     {
-        //
+        $question = Question::find($id);
+        return view('edit_question', ['question'=>$question]);
     }
 
     /**
@@ -78,9 +79,19 @@ class QuestionController extends Controller
      * @param  \Bjora\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'question_detail'=>'required',
+            'question_label'=>'required',
+        ]);
+
+        $question = Question::find($id);
+        $question->question_detail = $request->question_detail;
+        $question->question_label = $request->question_label;
+        $question->save();
+
+        return redirect()->route('home');
     }
 
     /**

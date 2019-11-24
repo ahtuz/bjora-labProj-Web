@@ -20,3 +20,7 @@ Route::get('/question/create', 'QuestionController@create')->name('add_question'
 Route::post('/question', 'ProductController@store');
 
 Route::get('/question', 'QuestionController@index')->name('view_questions');
+
+Route::get('/question/update/{id}', 'QuestionController@edit')->name('edit_question');
+
+Route::post('/question/update/{id}', 'QuestionController@update')->name('update_question');
