@@ -25,8 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $questions = Question::all();
-        $users = User::all();
-        return view('/home', compact('questions'), compact('users'));
+        $questions = Question::paginate(2);
+        return view('/home', compact('questions'));
     }
 }

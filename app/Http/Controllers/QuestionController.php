@@ -44,6 +44,7 @@ class QuestionController extends Controller
         $question = new Question();
         $question->question_detail = $request->question_detail;
         $question->question_label = $request->question_label;
+        $question->user_id = $request->user_id;
         $question->save();
 
         return redirect()->route('home');

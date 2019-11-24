@@ -19,17 +19,16 @@
 
             <div class="card">
                 <div class="card-header">Questions</div>
-
-                <div class="card-body">
-                    <!-- @//foreach($questions as question) -->
-                        <!-- <div></div> -->
-                    <!-- @//endforeach -->
-                    <span>testo</span>
-                    
-                </div>
-
-                <!-- {//{ $questions->links() }} -->
-
+                @foreach($questions as $question)
+                    <div class="card-body shadow-sm">
+                        <div>{{ $question->question_label }}</div>
+                        <div>{{ $question->question_detail }}</div>
+                        <div>{{ $question->user_id }}</div>
+                    </div>
+                @endforeach
+            </div>
+            <div class="container m-2">
+                <div class="row justify-content-center">{{ $questions->links() }}</div>                
             </div>
         </div>
     </div>
