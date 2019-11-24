@@ -20,6 +20,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -77,10 +78,12 @@
                 <div id="displayDateTime" class="text-white"></div>
             </div>
         </div>
-        <main class="py-4">
-            @yield('content')
-        </main>
-        <footer class="bg-dark pt-2 pb-2">
+        <div class="content">
+            <main class="py-4">
+                @yield('content')
+            </main>
+        </div>
+        <footer class="footer bg-dark pt-2 pb-2">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="text-white d-inline">&copy 2019 Copyright</div>
