@@ -22,6 +22,7 @@
 
                 <div class="card-body">
                     <!-- @//foreach($questions as question) -->
+                        <!-- <div></div> -->
                     <!-- @//endforeach -->
                     <span>testo</span>
                     
