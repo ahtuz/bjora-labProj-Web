@@ -13,6 +13,10 @@
 
 Auth::routes();
 
+Route::view('/question/addQuestion', 'question/addQuestion')->name('addQuestion');
+Route::view('/master', 'masterPage')->name('masterPage');
+Route::view('/addUser', 'addUser')->name('addUser');
+
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/question/create', 'QuestionController@create')->name('add_question');
