@@ -14,7 +14,8 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        $questions = Question::all();
+        return view('home', compact('questions'));
     }
 
     /**
@@ -24,7 +25,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        return view('addQuestion');
+        return view('question/add_question');
     }
 
     /**
@@ -36,6 +37,16 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'question_detail'=>'required',
+            'question_label'=>'required',
+        ]);
+
+        $product = new Product();
+        $product->product_name = $request->product_name;
+        $product->product_price = $request->product_price;
+        $product->save();
+        return redirect()->route('home');
     }
 
     /**

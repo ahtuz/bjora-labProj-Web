@@ -11,12 +11,10 @@
 |
 */
 
-Route::view('/question/addQuestion', 'question/addQuestion')->name('addQuestion');
-
-Route::get('/', function () {
-    return view('auth/login');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/question/create', 'QuestionController@create')->name('add_question');
+
+Route::get('/question', 'QuestionController@index')->name('view_questions');
