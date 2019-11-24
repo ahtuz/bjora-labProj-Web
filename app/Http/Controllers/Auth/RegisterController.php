@@ -49,6 +49,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
 
+        // Validation for newly registered user
+        
         return Validator::make($data, [
             'username' => 'required|string|max:100',
             'email' => 'required|string|email|unique:users',
@@ -68,21 +70,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
-        // dd($data['profile_picture']->getClientOriginalName());
-
+        /* 
+            Of course before doing this, we need to command "php artisan storage:link".
+            To store profile_picture to public/storage/profile_pictures folder.
+            With the format username-time-original file name, there will be no duplicate file
+            in the folder.
+        */
         $file = $data['profile_picture'];
-        $filename = $data['profile_picture']->getClientOriginalName();
-
-        $file->storeAs('images', $filename, 'public');
-
+        $filename = $data['username'] . '-' . time() . '-' . $file->getClientOriginalName();
+        $file->storeAs('profile_pictures', $filename, 'public');
+        
+        // the usual way to create new User using Eloquent
         return User::create([
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'gender' => $data['gender'],
             'address' => $data['address'],
-            'profile_picture' => $data['profile_picture'],
+            'profile_picture' => $filename,
             'birthday' => $data['birthday'],
         ]);
     }

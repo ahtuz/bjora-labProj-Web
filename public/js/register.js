@@ -1,3 +1,5 @@
+// short JS to get the input file name in choose file register
+
 var input = document.getElementById( 'profile_picture' );
 var infoArea = document.getElementById( 'profile_picture-filename' );
 
