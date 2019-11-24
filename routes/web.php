@@ -18,3 +18,6 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/question/create', 'QuestionController@create')->name('add_question');
 
 Route::get('/question', 'QuestionController@index')->name('view_questions');
+
+Route::post('/question', 'ProductController@store');
+

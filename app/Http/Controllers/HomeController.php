@@ -3,6 +3,8 @@
 namespace Bjora\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Bjora\Question;
+use Bjora\User;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $questions = Question::all();
+        $users = User::all();
+        return view('/home', compact('questions'), compact('users'));
     }
 }
