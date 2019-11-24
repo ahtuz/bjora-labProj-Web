@@ -12,15 +12,11 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="question" class="col-md-4 col-form-label text-md-right">{{ __('Question') }}</label>
+                            <label for="question" class="col-md-3 col-form-label text-md-right">{{ __('Question') }}</label>
 
-                            <div class="col-md-6">
-                            <select class="custom-select @error('question') is-invalid @enderror" name="question" id="question" type="text" value="{{ old('question') }}">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
+                            <div class="col-md-8">
+                                <textarea class="form-control @error('question') is-invalid @enderror" id="question" rows="8" name="question" value="{{ old('question') }}" required autocomplete="question" autofocus></textarea>
+
                                 @error('question')
                                     <div class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -30,12 +26,19 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="questionLabel" class="col-md-4 col-form-label text-md-right">{{ __('questionLabel') }}</label>
+                            <label for="questionLabel" class="col-md-3 col-form-label text-md-right">{{ __('Question Label') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="questionLabel" type="text" class="form-control @error('questionLabel') is-invalid @enderror" name="questionLabel" value="{{ old('questionLabel') }}" required autocomplete="questionLabel" autofocus>
-
-                                @error('questionLabel')
+                            <div class="col-md-8">
+                            <select class="custom-select @error('questionLabel') is-invalid @enderror" name="questionLabel" id="questionLabel" type="text" value="{{ old('questionLabel') }}">
+                                <option selected value="unspecified">Unspecified</option>
+                                <option value="art">Art</option>
+                                <option value="gaming">Gaming</option>
+                                <option value="finance">Finance</option>
+                                <option value="health">Health</option>
+                                <option value="music">Music</option>
+                                <option value="technology">Technology</option>
+                            </select>
+                                @error('question')
                                     <div class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                     </div>
@@ -43,8 +46,8 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                        <div class="form-group row mb-0 justify-content-center">
+                            <div class="p-2">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Submit Quesiton') }}
                                 </button>
