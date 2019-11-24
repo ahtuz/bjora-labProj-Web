@@ -1,6 +1,7 @@
 .content {
     min-height: calc(100vh - 125px);
-  }
-  .footer {
+}
+
+.footer {
     height: auto;
-  }
+}
