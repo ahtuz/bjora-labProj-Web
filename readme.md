@@ -1,3 +1,5 @@
+## just don't forget to `git pull` first before code anything
+
 # To Add the project to your PC:
 1. Open terminal, cd to your desired folder
 2. type `git clone https://github.com/Ahtuz/bjora-labProj-Web.git`.
