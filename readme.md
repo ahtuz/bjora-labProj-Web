@@ -23,3 +23,7 @@
 1. `git add .`
 2. `git commit -m "write what you update here"`
 3. `git push origin master`
+
+# Naming guide for files:
+1. For controller, please use CamelCase, ex. `HomeController.php`
+2. For views, please use underscore to delimit words `_`, ex. `edit_question.blade.php`
