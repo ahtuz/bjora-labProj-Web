@@ -24,6 +24,8 @@
 2. `git commit -m "write what you update here"`
 3. `git push origin master`
 
-# Naming guide for files:
-1. For controller, please use CamelCase, ex. `HomeController.php`
+# Naming convention:
+1. For controller, please use PascalCase, ex. `HomeController.php`
 2. For views, please use underscore to delimit words `_`, ex. `edit_question.blade.php`
+3. For model, please use PascalCase like in controller and try to name it only with 1 word, ex. `Question.php`
+4. For tables, please use lower case with ending `s`, ex. `questions`
