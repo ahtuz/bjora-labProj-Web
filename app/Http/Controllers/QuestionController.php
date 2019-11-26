@@ -4,6 +4,7 @@ namespace Bjora\Http\Controllers;
 
 use Bjora\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
@@ -44,10 +45,10 @@ class QuestionController extends Controller
         $question = new Question();
         $question->question_detail = $request->question_detail;
         $question->question_label = $request->question_label;
-        $question->user_id = $request->user_id;
+        $question->user_id = auth()->user()->id;
         $question->save();
 
-        return redirect()->route('home');
+        return redirect()->route('question');
     }
 
     /**
@@ -104,5 +105,7 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         //
+        Question::destroy($id);
+        return redirect()->route('home');
     }
 }

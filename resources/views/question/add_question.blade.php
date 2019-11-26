@@ -11,12 +11,12 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="question" class="col-md-3 col-form-label text-md-right">{{ __('Question') }}</label>
+                            <label for="question_detail" class="col-md-3 col-form-label text-md-right">{{ __('Question Detail') }}</label>
 
                             <div class="col-md-8">
-                                <textarea class="form-control @error('question') is-invalid @enderror" id="question" rows="8" name="question" value="{{ old('question') }}" required autocomplete="question" autofocus></textarea>
+                                <textarea class="form-control @error('question_detail') is-invalid @enderror" id="question_detail" rows="8" name="question_detail" value="{{ old('question_detail') }}" required autocomplete="question_detail" autofocus></textarea>
 
-                                @error('question')
+                                @error('question_detail')
                                     <div class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                     </div>
@@ -25,10 +25,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="questionLabel" class="col-md-3 col-form-label text-md-right">{{ __('Question Label') }}</label>
+                            <label for="question_label" class="col-md-3 col-form-label text-md-right">{{ __('Question Label') }}</label>
 
                             <div class="col-md-8">
-                            <select class="custom-select @error('questionLabel') is-invalid @enderror" name="questionLabel" id="questionLabel" type="text" value="{{ old('questionLabel') }}">
+                            <select class="custom-select @error('question_label') is-invalid @enderror" name="question_label" id="question_label" type="text" value="{{ old('question_label') }}">
                                 <option selected value="unspecified">Unspecified</option>
                                 <option value="art">Art</option>
                                 <option value="gaming">Gaming</option>
@@ -37,7 +37,7 @@
                                 <option value="music">Music</option>
                                 <option value="technology">Technology</option>
                             </select>
-                                @error('question')
+                                @error('question_label')
                                     <div class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                     </div>

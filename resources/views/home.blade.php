@@ -21,9 +21,10 @@
                 <div class="card-header">Questions</div>
                 @foreach($questions as $question)
                     <div class="card-body shadow-sm">
+                        $asker_id => $question->user_id
                         <div>{{ $question->question_label }}</div>
                         <div>{{ $question->question_detail }}</div>
-                        <div>{{ $question->user_id }}</div>
+                        <div>{{ $users->$asker_id }}</div>
                     </div>
                 @endforeach
             </div>
