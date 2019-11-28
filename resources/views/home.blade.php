@@ -16,15 +16,14 @@
                 </div>
             </div>
         </form>
-
             <div class="card">
                 <div class="card-header">Questions</div>
                 @foreach($questions as $question)
                     <div class="card-body shadow-sm">
-                        $asker_id => $question->user_id
                         <div>{{ $question->question_label }}</div>
                         <div>{{ $question->question_detail }}</div>
-                        <div>{{ $users->$asker_id }}</div>
+                        <div>{{ $question->user->username }}</div>
+                        <div><img src="{{ asset('storage/profile_pictures/'.$question->user->profile_picture) }}" alt="No Image" srcset="" style="width:50px; height:50px;"></div>
                     </div>
                 @endforeach
             </div>
