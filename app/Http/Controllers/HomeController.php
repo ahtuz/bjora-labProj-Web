@@ -27,8 +27,6 @@ class HomeController extends Controller
     {
         $questions = Question::paginate(10);
         $users = User::all();
-        // dd(User::find(2)->question);
-        // dd($questions->find(2)->user->username);
         return view('/home', compact('questions'), compact('users'));
     }
 }

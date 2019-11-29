@@ -23,6 +23,8 @@ class UsersTableSeeder extends Seeder
                 'address' => "Diabolos St.",
                 'birthday' => "2004-01-23",
                 'profile_picture' => "MiyakoIzumo.png",
+                'created_at' => "2019-11-19 02:34:20",
+				'updated_at' => "2019-11-19 02:34:20",
             ],
             [
                 'id' => 2,
@@ -33,6 +35,8 @@ class UsersTableSeeder extends Seeder
                 'address' => "Deserted Island St.",
                 'birthday' => "2001-06-27",
                 'profile_picture' => "OnishimaHomare.jpg",
+                'created_at' => "2019-11-19 02:34:20",
+				'updated_at' => "2019-11-19 02:34:20",
             ],
             [
                 'id' => 3,
@@ -43,6 +47,8 @@ class UsersTableSeeder extends Seeder
                 'address' => "Seoul St.",
                 'birthday' => "1994-10-10",
                 'profile_picture' => "BaeSuzy.jpg",
+                'created_at' => "2019-11-19 02:34:20",
+				'updated_at' => "2019-11-19 02:34:20",
 	        ],
         ]);
     }

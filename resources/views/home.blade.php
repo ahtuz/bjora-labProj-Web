@@ -20,10 +20,17 @@
                 <div class="card-header">Questions</div>
                 @foreach($questions as $question)
                     <div class="card-body shadow-sm">
-                        <div>{{ $question->question_label }}</div>
-                        <div>{{ $question->question_detail }}</div>
-                        <div>{{ $question->user->username }}</div>
-                        <div><img src="{{ asset('storage/profile_pictures/'.$question->user->profile_picture) }}" alt="No Image" srcset="" style="width:50px; height:50px;"></div>
+                        <div class="position-relative d-flex justify-content-end font-weight-bold text-danger">{{ $question->question_label }}</div>
+                        <h3>{{ $question->question_detail }}</h3>
+                        <div class="created_at text-secondary font-italic">Created at: {{ $question->created_at }}</div>
+                        <div class="position-relative d-flex justify-content-end">
+                            <div> 
+                                <div class="d-inline mr-2">{{ $question->user->username }}</div>
+                                <div class="d-inline">
+                                    <img src="{{ asset('storage/profile_pictures/'.$question->user->profile_picture) }}" alt="No Image" srcset="" class="rounded-circle" style="width:50px; height:50px;">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 @endforeach
             </div>
