@@ -31,6 +31,7 @@
                                 </div>
                             </div>
                         </div>
+                        <a class="btn btn-primary" href="#" role="button">Answer</a>
                     </div>
                 @endforeach
             </div>

@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Add Question') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('home') }}">
+                    <form method="POST" action="/question">
                         @csrf
 
                         <div class="form-group row">
@@ -29,13 +29,13 @@
 
                             <div class="col-md-8">
                             <select class="custom-select @error('question_label') is-invalid @enderror" name="question_label" id="question_label" type="text" value="{{ old('question_label') }}">
-                                <option selected value="unspecified">Unspecified</option>
-                                <option value="art">Art</option>
-                                <option value="gaming">Gaming</option>
-                                <option value="finance">Finance</option>
-                                <option value="health">Health</option>
-                                <option value="music">Music</option>
-                                <option value="technology">Technology</option>
+                                <option selected value="Unspecified">Unspecified</option>
+                                <option value="Art">Art</option>
+                                <option value="Gaming">Gaming</option>
+                                <option value="Finance">Finance</option>
+                                <option value="Health">Health</option>
+                                <option value="Music">Music</option>
+                                <option value="Technology">Technology</option>
                             </select>
                                 @error('question_label')
                                     <div class="invalid-feedback" role="alert">
