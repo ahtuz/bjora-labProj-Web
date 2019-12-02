@@ -27,8 +27,12 @@ Route::post('/question', 'QuestionController@store');
 
 Route::get('/question', 'QuestionController@index')->name('view_questions');
 
+Route::get('/question/{id}', 'QuestionController@show')->name('show_question');
+
 Route::get('/question/{id}/update', 'QuestionController@edit')->name('edit_question');
 
 Route::post('/question/{id}/update', 'QuestionController@update')->name('update_question');
 
-Route::get('/question/{id}/delete', 'QuestionController@destroy')->name('delete_products');
+Route::get('/question/{id}/delete', 'QuestionController@destroy')->name('delete_question');
+
+Route::get('/user/{id}', 'UserController@show')->name('show_user');

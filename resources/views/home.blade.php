@@ -31,7 +31,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a class="btn btn-primary" href="#" role="button">Answer</a>
+                        <a class="btn btn-primary" href="/question/{{$question->id}}" role="button">Answer</a>
                     </div>
                 @endforeach
             </div>
