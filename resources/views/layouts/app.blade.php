@@ -41,12 +41,12 @@
 
                         @else
                             <li class="nav-item pl-2">
-                                <a class="nav-link text-white" href="/">{{ __('My Question') }}</a>
+                                <a class="nav-link text-white" href="/user/{{ Auth::id() }}/questions">{{ __('My Question') }}</a>
                             </li>
                             <li class="nav-item pl-1">
                                 <a class="nav-link text-white" href="/">{{ __('Inbox') }}</a>
                             </li>
-                        @endguest
+                    @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -66,7 +66,7 @@
                                 <a class="nav-link text-white" href="{{ route('add_question') }}">{{ __('Add Question') }}</a>
                             </li>
                             <li class="nav-item pl-4 pr-4">
-                                <a class="nav-link text-white" href="/">{{ __('Profile') }}</a>
+                                <a class="nav-link text-white" href="/user/{{Auth::id()}}">{{ __('Profile') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="{{ route('logout') }}"

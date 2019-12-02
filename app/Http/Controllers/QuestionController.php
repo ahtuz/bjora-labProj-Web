@@ -105,7 +105,6 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
         Question::destroy($id);
         return redirect()->route('home');
     }

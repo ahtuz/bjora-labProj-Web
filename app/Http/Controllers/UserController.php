@@ -3,6 +3,7 @@
 namespace Bjora\Http\Controllers;
 
 use Bjora\User;
+use Bjora\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -50,6 +51,13 @@ class UserController extends Controller
     {
         $user = User::find($id);
         return view('user/show_user', ['user'=>$user]);
+    }
+
+    // Show questions made by the user, by comparing id in both tables
+    public function viewQuestion($id)
+    {
+        $questions = Question::where('user_id', $id)->paginate(10);
+        return view('user/view_user_questions', compact('questions'));
     }
 
     /**
