@@ -38,13 +38,13 @@ class User extends Authenticatable
     ];
 
     // relationship to question (one to many)
-    public function question()
+    public function questions()
     {
         return $this->hasMany('Bjora\Question', 'id', 'user_id');
     }
 
     // relationship to answer (one to many)
-    public function answer()
+    public function answers()
     {
         return $this->hasMany('Bjora\Answer');
     }
