@@ -4,7 +4,7 @@ namespace Bjora;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Question extends Model
+class Answer extends Model
 {
     // relationship to user (one to many inverse)
     public function user()
@@ -12,9 +12,9 @@ class Question extends Model
         return $this->belongsTo('Bjora\User', 'user_id', 'id');
     }
 
-    // relationship to answer (one to many)
-    public function answers()
+    // relationship to question (one to many inverse)
+    public function question()
     {
-        return $this->hasMany('Bjora\Answer', 'id', 'question_id');
+        return $this->belongsTo('Bjora\Question', 'question_id', 'id');
     }
 }

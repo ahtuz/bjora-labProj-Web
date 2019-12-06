@@ -15,7 +15,6 @@ class UsersTableSeeder extends Seeder
         // seeder for users table
         DB::table('users')->insert([
     		[
-                'id' => 1,
 	            'username' => "MiyakoIzumo",
                 'email' => "miyakoizumo@email.com",
                 'password' => Hash::make('MiyakoIzumo'),
@@ -27,7 +26,6 @@ class UsersTableSeeder extends Seeder
 				'updated_at' => "2019-11-19 02:34:20",
             ],
             [
-                'id' => 2,
 	            'username' => "OnishimaHomare",
                 'email' => "onishimahomare@email.com",
                 'password' => Hash::make('OnishimaHomare'),
@@ -39,7 +37,6 @@ class UsersTableSeeder extends Seeder
 				'updated_at' => "2019-11-19 02:34:20",
             ],
             [
-                'id' => 3,
 	            'username' => "BaeSuzy",
                 'email' => "baesuzy@email.com",
                 'password' => Hash::make('BaeSuzy'),

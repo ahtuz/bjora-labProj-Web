@@ -46,6 +46,6 @@ class User extends Authenticatable
     // relationship to answer (one to many)
     public function answers()
     {
-        return $this->hasMany('Bjora\Answer');
+        return $this->hasMany('Bjora\Answer', 'id', 'user_id');
     }
 }

@@ -382,12 +382,15 @@ class ComposerStaticInit84d123da1314471f1f4a2c5dd0fcfb5a
     );
 
     public static $classMap = array (
+        'AnswersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AnswersTableSeeder.php',
         'BeyondCode\\DumpServer\\DumpServerCommand' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
         'BeyondCode\\DumpServer\\DumpServerServiceProvider' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerServiceProvider.php',
         'BeyondCode\\DumpServer\\Dumper' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/Dumper.php',
         'BeyondCode\\DumpServer\\RequestContextProvider' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/RequestContextProvider.php',
+        'Bjora\\Answer' => __DIR__ . '/../..' . '/app/Answer.php',
         'Bjora\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'Bjora\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'Bjora\\Http\\Controllers\\AnswerController' => __DIR__ . '/../..' . '/app/Http/Controllers/AnswerController.php',
         'Bjora\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'Bjora\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'Bjora\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
@@ -396,6 +399,7 @@ class ComposerStaticInit84d123da1314471f1f4a2c5dd0fcfb5a
         'Bjora\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'Bjora\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'Bjora\\Http\\Controllers\\QuestionController' => __DIR__ . '/../..' . '/app/Http/Controllers/QuestionController.php',
+        'Bjora\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'Bjora\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'Bjora\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'Bjora\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',

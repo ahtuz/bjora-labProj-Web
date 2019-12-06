@@ -6,12 +6,15 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AnswersTableSeeder' => $baseDir . '/database/seeds/AnswersTableSeeder.php',
     'BeyondCode\\DumpServer\\DumpServerCommand' => $vendorDir . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
     'BeyondCode\\DumpServer\\DumpServerServiceProvider' => $vendorDir . '/beyondcode/laravel-dump-server/src/DumpServerServiceProvider.php',
     'BeyondCode\\DumpServer\\Dumper' => $vendorDir . '/beyondcode/laravel-dump-server/src/Dumper.php',
     'BeyondCode\\DumpServer\\RequestContextProvider' => $vendorDir . '/beyondcode/laravel-dump-server/src/RequestContextProvider.php',
+    'Bjora\\Answer' => $baseDir . '/app/Answer.php',
     'Bjora\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'Bjora\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'Bjora\\Http\\Controllers\\AnswerController' => $baseDir . '/app/Http/Controllers/AnswerController.php',
     'Bjora\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
     'Bjora\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',
     'Bjora\\Http\\Controllers\\Auth\\RegisterController' => $baseDir . '/app/Http/Controllers/Auth/RegisterController.php',
@@ -20,6 +23,7 @@ return array(
     'Bjora\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'Bjora\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'Bjora\\Http\\Controllers\\QuestionController' => $baseDir . '/app/Http/Controllers/QuestionController.php',
+    'Bjora\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'Bjora\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'Bjora\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'Bjora\\Http\\Middleware\\CheckForMaintenanceMode' => $baseDir . '/app/Http/Middleware/CheckForMaintenanceMode.php',
