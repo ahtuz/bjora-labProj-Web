@@ -40,3 +40,5 @@ Route::get('/question/{id}/delete', 'QuestionController@destroy')->name('delete_
 Route::get('/user/{id}', 'UserController@show')->name('show_user');
 
 Route::get('/user/{id}/questions', 'UserController@viewQuestion')->name('view_user_questions');
+
+Route::get('/answer/{id}/update', 'AnswerController@edit')->name('edit_answer');

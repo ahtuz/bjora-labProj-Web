@@ -17,7 +17,6 @@ class AnswerController extends Controller
     public function index()
     {
         //
-        dd($request);
     }
 
     /**
@@ -69,9 +68,11 @@ class AnswerController extends Controller
      * @param  \Bjora\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Answer $answer)
+    public function edit(Request $request)
     {
-        //
+        $answer = Answer::find($request->id);
+        $question = $answer->question;
+        return view('answer/edit_answer', compact('answer'), compact('question'));
     }
 
     /**
