@@ -3,7 +3,9 @@
 namespace Bjora\Http\Controllers;
 
 use Bjora\Answer;
+use Bjora\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AnswerController extends Controller
 {
@@ -15,6 +17,7 @@ class AnswerController extends Controller
     public function index()
     {
         //
+        dd($request);
     }
 
     /**
@@ -25,6 +28,7 @@ class AnswerController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -35,7 +39,17 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'answer_detail'=>'required',
+        ]);
+
+        $answer = new Answer();
+        $answer->user_id = auth()->user()->id;  
+        $answer->question_id = $request->id;
+        $answer->answer_detail = $request->answer_detail;
+        $answer->save();
+
+        return redirect()->route('show_question', $request->id);
     }
 
     /**

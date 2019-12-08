@@ -29,6 +29,8 @@ Route::get('/question', 'QuestionController@index')->name('view_questions');
 
 Route::get('/question/{id}', 'QuestionController@show')->name('show_question');
 
+Route::post('/question/{id}', 'AnswerController@store')->name('add_answer');
+
 Route::get('/question/{id}/update', 'QuestionController@edit')->name('edit_question');
 
 Route::post('/question/{id}/update', 'QuestionController@update')->name('update_question');

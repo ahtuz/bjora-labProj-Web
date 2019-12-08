@@ -6,7 +6,6 @@
     height: auto;
 }
 
-.created_at {
+.created_at, .answer-date {
     font-size: smaller;
 }
-

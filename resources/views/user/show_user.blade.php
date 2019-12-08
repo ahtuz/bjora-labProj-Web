@@ -42,19 +42,19 @@
 
         @else
         <div class="row justify-content-center">
-
             <div class="col-md-5">
-
             <div class="card">
                 <div class="card-header">Send Message to {{ $user->username }}</div>
                     <div class="card-body shadow-sm d-inline">
-                        <form method="POST" action="#">
+                        <form method="POST" action="/user/{{ $user->id }}">
+                            @csrf
                             <textarea class="form-control d-inline" id="message" rows="4" name="message"></textarea>
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Send Message') }}
+                                </button>
+                            </div>
                         </form>
-                        <div class="d-flex justify-content-end">
-                            <a class="btn btn-primary" href="#" role="button">Send Message</a>
-                        </div>
-
                     </div>
                 </div>
             </div>

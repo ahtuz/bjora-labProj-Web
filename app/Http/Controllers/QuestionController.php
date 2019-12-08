@@ -3,6 +3,7 @@
 namespace Bjora\Http\Controllers;
 
 use Bjora\Question;
+use Bjora\Answer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -60,7 +61,8 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = Question::find($id);
-        return view('question/show_question', ['question'=>$question]);
+        $answer = Answer::where('question_id',$id)->get();
+        return view('question/show_question', ['question'=>$question], compact('answer'));
     }
 
     /**
