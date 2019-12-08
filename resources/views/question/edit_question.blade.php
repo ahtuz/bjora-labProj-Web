@@ -63,7 +63,7 @@
                         <div class="form-group row mb-0 justify-content-center">
                             <div class="p-2">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Submit Quesiton') }}
+                                    {{ __('Save Edits') }}
                                 </button>
                             </div>
                         </div>

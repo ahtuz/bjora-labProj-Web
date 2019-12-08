@@ -47,6 +47,7 @@ class QuestionController extends Controller
         $question->user_id = auth()->user()->id;
         $question->question_detail = $request->question_detail;
         $question->question_label = $request->question_label;
+        $question->status = 1;
         $question->save();
 
         return redirect()->route('home');
@@ -96,7 +97,7 @@ class QuestionController extends Controller
         $question->question_label = $request->question_label;
         $question->save();
 
-        return redirect()->route('home');
+        return redirect()->route('view_user_questions', Auth::id());
     }
 
     /**
@@ -105,9 +106,9 @@ class QuestionController extends Controller
      * @param  \Bjora\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $question)
+    public function destroy($id)
     {
         Question::destroy($id);
-        return redirect()->route('home');
+        return redirect()->route('view_user_questions', Auth::id());
     }
 }

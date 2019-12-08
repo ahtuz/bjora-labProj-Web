@@ -10,7 +10,7 @@
                         <div class="d-flex font-weight-bold text-danger justify-content">
                             {{ $question->question_label }}
                         </div>
-                        @if( $question->status == 1 )
+                        @if( $question->status == 1)
                             <div class="d-inline">
                                 <a href="#" style="text-decoration:none;" class="text-white badge badge-pill badge-success">Open</a>
                             </div>
@@ -21,12 +21,12 @@
                         @endif
                     </div>
                     <h2>{{ $question->question_detail }}</h2>
-                    <div class="created_at text-secondary font-italic">Created at: {{ $question->created_at }}</div>
+                    <div class="created_at text-secondary font-italic">Asked at {{ $question->created_at }}</div>
                     <div class="position-relative d-flex justify-content-end">
-                        <div> 
+                        <div>
                             <div class="d-inline mr-2">{{ $question->user->username }}</div>
                             <div class="d-inline">
-                                <img src="{{ asset('storage/profile_pictures/'.$question->user->profile_picture) }}" alt="No Image" srcset="" class="rounded-circle" style="width:50px; height:50px;">
+                            <a href="/user/{{ $question->user_id }}"><img src="{{ asset('storage/profile_pictures/'.$question->user->profile_picture) }}" alt="No Image" srcset="" class="rounded-circle" style="width:50px; height:50px;"></a>
                             </div>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                             <div class="d-inline">
                                 <a class="mt-1 text-dark d-block position-relative" style="text-decoration:none;" href="/user/{{ $a->user->user_id }}">{{ $a->user->username }}
                                 </a>
-                                <div class="answer-date mb-1 text-dark d-block position-relative">{{ $a->updated_at }}
+                                <div class="answer-date mb-1 text-dark d-block position-relative">Answered at {{ $a->updated_at }}
                                 </div>
                             </div>
                         </div>

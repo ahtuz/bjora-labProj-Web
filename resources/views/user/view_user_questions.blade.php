@@ -36,7 +36,9 @@
                                 </div>
                             </div>
                         </div>
-                        <a class="btn btn-primary" href="/question/{{ $question->id }}" role="button">Answer</a>
+                        <a class="btn btn-info" href="/question/{{ $question->id }}" role="button">See Answer</a>
+                        <a class="btn btn-warning" href="/question/{{ $question->id }}/update" role="button">Edit</a>
+                        <a class="btn btn-danger" href="/question/{{ $question->id }}/delete" role="button">Delete</a>
                     </div>
                 @endforeach
             </div>
