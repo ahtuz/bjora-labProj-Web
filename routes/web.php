@@ -13,9 +13,9 @@
 
 Auth::routes();
 
-Route::view('/master_page', 'master_page')->name('master_page');
+// Route::view('/master_page', 'master_page')->name('master_page');
 
-Route::view('/add_user', 'add_user')->name('add_user');
+// Route::view('/add_user', 'add_user')->name('add_user');
 
 Route::get('/', 'HomeController@index')->name('home');
 
@@ -41,4 +41,14 @@ Route::get('/user/{id}', 'UserController@show')->name('show_user');
 
 Route::get('/user/{id}/questions', 'UserController@viewQuestion')->name('view_user_questions');
 
+Route::get('/user/{id}/update', 'UserController@edit')->name('edit_user');
+
+Route::get('/user/{id}/delete', 'UserController@destroy')->name('delete_user');
+
 Route::get('/answer/{id}/update', 'AnswerController@edit')->name('edit_answer');
+
+Route::post('/user/{id}', 'MessageController@store')->name('send_message');
+
+Route::get('/user/{id}/inbox', 'MessageController@show')->name('inbox');
+
+Route::get('/message/{id}/delete', 'MessageController@destroy')->name('delete_message');

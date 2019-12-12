@@ -62,7 +62,7 @@ class QuestionController extends Controller
     public function show($id)
     {
         $question = Question::find($id);
-        $answer = Answer::where('question_id',$id)->get();
+        $answer = Answer::where('question_id', $id)->get();
         return view('question/show_question', ['question'=>$question], compact('answer'));
     }
 

@@ -58,10 +58,10 @@
                     <div class="card-body shadow-sm">
                         <div class="d-flex mb-3">
                             <div class="mr-3">
-                                <a href="/user/{{ $a->user->user_id }}"><img src="{{ asset('storage/profile_pictures/'.$a->user->profile_picture) }}" alt="No Image" class="rounded-circle" srcset="" style="width:50px; height:50px;"></a>
+                                <a href="/user/{{$a->user_id}}"><img src="{{ asset('storage/profile_pictures/'.$a->user->profile_picture) }}" alt="No Image" class="rounded-circle" srcset="" style="width:50px; height:50px;"></a>
                             </div>
                             <div class="d-inline">
-                                <a class="mt-1 text-dark d-block position-relative" style="text-decoration:none;" href="/user/{{ $a->user->user_id }}">{{ $a->user->username }}
+                                <a class="mt-1 text-dark d-block position-relative" style="text-decoration:none;" href="/user/{{ $a->user_id }}">{{ $a->user->username }}
                                 </a>
                                 <div class="answer-date mb-1 text-dark d-block position-relative">Answered at {{ $a->updated_at }}
                                 </div>

@@ -54,7 +54,7 @@ class UsersTableSeeder extends Seeder
                 'gender' => "Female",
                 'address' => "Vallhalla St.",
                 'birthday' => "1999-06-27",
-                'profile_picture' => "JillStingray.jpg",
+                'profile_picture' => "JillStingray.png",
                 'created_at' => "2019-11-19 02:54:20",
 				'updated_at' => "2019-11-19 02:54:20",
 	        ],

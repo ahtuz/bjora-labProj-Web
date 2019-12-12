@@ -68,7 +68,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('user/edit_user', compact('user'));
     }
 
     /**
@@ -80,7 +81,32 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        $file = $request['profile_picture'];
+        $filename = $request['username'] . '-' . time() . '-' . $file->getClientOriginalName();
+        $file->storeAs('profile_pictures', $filename, 'public');
+
+        $request->validate([
+            'username' => 'required|string|max:100',
+            'email' => 'required|string|email|unique:users',
+            'password' => 'required|string|min:6|confirmed|alpha_num',
+            'gender' => 'required',
+            'address' => 'required',
+            'birthday' => 'required|date_format:Y-m-d',
+            'profile_picture' => 'required|mimes:jpg,jpeg,png',
+        ]);
+
+        $user->username = $request->username;
+        $user->email = $request->question_label;
+        $user->password = Hash::make($request['password']);
+        $user->gender = $request->gender;
+        $user->address = $request->address;
+        $user->birthday = $request->birthday;
+        $user->profile_picture = $filename;
+        $user->save();
+
+        return redirect()->route('user/show_user', $id);
     }
 
     /**

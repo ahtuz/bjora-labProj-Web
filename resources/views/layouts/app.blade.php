@@ -44,7 +44,7 @@
                                 <a class="nav-link text-white" href="/user/{{ Auth::id() }}/questions">{{ __('My Question') }}</a>
                             </li>
                             <li class="nav-item pl-1">
-                                <a class="nav-link text-white" href="/">{{ __('Inbox') }}</a>
+                                <a class="nav-link text-white" href="/user/{{ Auth::id() }}/inbox">{{ __('Inbox') }}</a>
                             </li>
                     @endguest
                     </ul>

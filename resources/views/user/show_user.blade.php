@@ -25,7 +25,7 @@
                         <!-- validasi edit profile; tampilkan bila user sekarang adalah auth -->
                         @if( Auth::id() == $user->id )
                             <div class="d-inline">
-                                <a class="btn btn-primary justify-content-end" href="#" role="button">Edit Profile</a>
+                                <a class="btn btn-primary justify-content-end" href="/user/{{$user->id}}/update" role="button">Edit Profile</a>
                             </div>
                         @endif
 
@@ -46,9 +46,9 @@
             <div class="card">
                 <div class="card-header">Send Message to {{ $user->username }}</div>
                     <div class="card-body shadow-sm d-inline">
-                        <form method="POST" action="/user/{{ $user->id }}">
+                        <form method="POST" action="{{ route('send_message', $user->id) }}">
                             @csrf
-                            <textarea class="form-control d-inline" id="message" rows="4" name="message"></textarea>
+                            <textarea class="form-control d-inline" id="message_detail" rows="4" name="message_detail"></textarea>
                             <div class="d-flex justify-content-end">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Send Message') }}
