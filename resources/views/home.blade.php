@@ -6,9 +6,9 @@
 
         <div class="col-md-8">
 
-        <form method="GET" class="mb-3 w-50" action="{{ route('home') }}">
-            <div class="input-group ">
-                <input type="text" class="form-control" placeholder="Search by username or question...">
+        <form method="GET" class="mb-3 w-50" action="{{ route('home_search') }}">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search by username or question...">
                 <div class="input-group-append">
                     <button class="btn btn-secondary" type="submit">
                         <i class="fa fa-search"></i>

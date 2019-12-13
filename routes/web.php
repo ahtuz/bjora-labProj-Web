@@ -52,3 +52,5 @@ Route::post('/user/{id}', 'MessageController@store')->name('send_message');
 Route::get('/user/{id}/inbox', 'MessageController@show')->name('inbox');
 
 Route::get('/message/{id}/delete', 'MessageController@destroy')->name('delete_message');
+
+Route::get('/search', 'HomeController@searchIndex')->name('home_search');
