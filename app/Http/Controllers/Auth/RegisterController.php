@@ -71,7 +71,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         /* 
-            Of course before doing this, we need to command "php artisan storage:link".
+            Before doing this, we need to command "php artisan storage:link".
             To store profile_picture to public/storage/profile_pictures folder.
             With the format username-time-original file name, there will be no duplicate file
             in the folder.

@@ -38,7 +38,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-
     }
 
     /**
@@ -83,6 +82,7 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
+        // get the filename with time, so there will be no duplicate files
         $file = $request['profile_picture'];
         $filename = $request['username'] . '-' . time() . '-' . $file->getClientOriginalName();
         $file->storeAs('profile_pictures', $filename, 'public');

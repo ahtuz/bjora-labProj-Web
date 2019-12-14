@@ -54,3 +54,9 @@ Route::get('/user/{id}/inbox', 'MessageController@show')->name('inbox');
 Route::get('/message/{id}/delete', 'MessageController@destroy')->name('delete_message');
 
 Route::get('/search', 'HomeController@searchIndex')->name('home_search');
+
+Route::get('/admin/label/add', 'LabelController@create')->name('add_label');
+
+Route::get('/admin/label', 'LabelController@index')->name('view_label');
+
+Route::get('/admin/label/{id}/delete', 'LabelController@destroy')->name('delete_label');
