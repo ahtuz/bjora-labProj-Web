@@ -20,7 +20,7 @@
                 <div class="card-header">Questions</div>
                 @foreach($questions as $question)
                     <div class="card-body shadow-sm">
-                        <div class="position-relative d-flex justify-content-end font-weight-bold text-danger">{{ $question->question_label }}</div>
+                        <div class="position-relative d-flex justify-content-end font-weight-bold text-danger">{{ $question->label->question_label }}</div>
                         <a style="text-decoration:none;" href="/question/{{ $question->id }}">
                             <h3 class="text-dark">{{ $question->question_detail }}</h3>
                         </a>

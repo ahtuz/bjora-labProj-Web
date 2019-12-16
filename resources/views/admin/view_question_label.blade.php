@@ -14,7 +14,7 @@
                         <li class="list-group-item d-flex justify-content-between">
                             {{ $question_label->question_label }}
                             <div>
-                                <a href="http://">
+                                <a href="{{ route('edit_label', $question_label->id) }}">
                                     <button type="button" class="btn btn-success btn-sm">Edit</button>
                                 </a>
                                 <a href="{{ route('delete_label', $question_label->id) }}">

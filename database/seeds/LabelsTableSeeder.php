@@ -43,6 +43,11 @@ class LabelsTableSeeder extends Seeder
 				'updated_at' => "2019-11-19 08:34:20",
             ],
             [
+            'question_label' => "Gaming",
+            'created_at' => "2019-11-19 08:34:20",
+            'updated_at' => "2019-11-19 08:34:20",
+            ],
+            [
             'question_label' => "Food",
             'created_at' => "2019-11-19 08:34:20",
             'updated_at' => "2019-11-19 08:34:20",

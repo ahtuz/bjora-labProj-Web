@@ -16,7 +16,7 @@ class QuestionsTableSeeder extends Seeder
     		[
                 'user_id' => 1,
 	            'question_detail' => "Do I Really Need to “Eject” USB Drives?",
-				'question_label' => "Technology",
+				'label_id' => 6,
 				'status' => 1,
 				'created_at' => "2019-11-19 02:34:20",
 				'updated_at' => "2019-11-19 02:34:20",
@@ -24,7 +24,7 @@ class QuestionsTableSeeder extends Seeder
 	        [
                 'user_id' => 1,
 	            'question_detail' => "How to consider yourself a good artist?",
-				'question_label' => "Art",
+				'label_id' => 1,
 				'status' => 1,
 				'created_at' => "2019-11-19 06:34:20",
 				'updated_at' => "2019-11-19 06:34:20",
@@ -32,7 +32,7 @@ class QuestionsTableSeeder extends Seeder
 	        [
                 'user_id' => 2,
 	            'question_detail' => "What are the basics of finance?",
-				'question_label' => "Finance",
+				'label_id' => 2,
 				'status' => 0,
 				'created_at' => "2019-11-19 06:34:20",
 				'updated_at' => "2019-11-19 06:34:20",
@@ -40,7 +40,7 @@ class QuestionsTableSeeder extends Seeder
 	        [
                 'user_id' => 2,
 	            'question_detail' => "Is playing video games bad for you?",
-				'question_label' => "Gaming",
+				'label_id' => 7,
 				'status' => 1,
 				'created_at' => "2019-11-19 01:34:20",
 				'updated_at' => "2019-11-19 01:34:20",
@@ -48,7 +48,7 @@ class QuestionsTableSeeder extends Seeder
 	        [
                 'user_id' => 3,
 	            'question_detail' => "When did LoFi Hip Hop start?",
-				'question_label' => "Music",
+				'label_id' => 5,
 				'status' => 0,
 				'created_at' => "2019-11-19 03:34:20",
 				'updated_at' => "2019-11-19 03:34:20",
@@ -56,7 +56,7 @@ class QuestionsTableSeeder extends Seeder
 	        [
                 'user_id' => 3,
 	            'question_detail' => "What is the best medical advice website?",
-				'question_label' => "Health",
+				'label_id' => 4,
 				'status' => 1,
 				'created_at' => "2019-11-19 02:34:20",
 				'updated_at' => "2019-11-19 02:34:20",
