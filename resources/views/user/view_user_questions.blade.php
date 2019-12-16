@@ -6,9 +6,9 @@
 
         <div class="col-md-8">
 
-        <form method="GET" class="mb-3 w-50" action="{{ route('home') }}">
-            <div class="input-group ">
-                <input type="text" class="form-control" placeholder="Search by username or question...">
+        <form method="GET" class="mb-3 w-50" action="{{ route('user_question_search', Auth::id()) }}">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search by username or question...">
                 <div class="input-group-append">
                     <button class="btn btn-secondary" type="submit">
                         <i class="fa fa-search"></i>
@@ -20,7 +20,7 @@
                 <div class="card-header">Questions</div>
                 @foreach($questions as $question)
                     <div class="card-body shadow-sm">
-                        <div class="position-relative d-flex justify-content-end font-weight-bold text-danger">{{ $question->question_label }}</div>
+                        <div class="position-relative d-flex justify-content-end font-weight-bold text-danger">{{ $question->label->question_label }}</div>
                         <a style="text-decoration:none;" href="/question/{{ $question->id }}">
                             <h3 class="text-dark">{{ $question->question_detail }}</h3>
                         </a>

@@ -32,11 +32,6 @@ class HomeController extends Controller
     public function searchIndex(Request $request){
         $search = $request->q;
 
-        // $users = User::where('username', 'LIKE', '%'.$search.'%')->get();
-        // dd($users[1]);
-        // $questions = Question::whereIn('user_id', $users)->orWhere('question_detail', 'LIKE', "%$search%")->paginate(10);
-        // dd($questions);
-
         $questions = Question::where('question_detail', 'LIKE', "%$search%")->orWhereHas('user', function($u) use ($search){return $u->where('username', 'LIKE', "%$search%");})->paginate(10);
 
         return view('/home', compact('questions'));

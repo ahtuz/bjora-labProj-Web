@@ -119,4 +119,12 @@ class UserController extends Controller
     {
         //
     }
+
+    public function searchIndex(Request $request, $id){
+        $search = $request->q;
+
+        $questions = Question::where('question_detail', 'LIKE', "%$search%")->where('user_id', $id)->paginate(10);
+
+        return view('user/view_user_questions', compact('questions'));
+    }
 }
