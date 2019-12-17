@@ -54,13 +54,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link text-white" href="/login">{{ __('Login') }}</a>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
                         @else
                             <li class="nav-item border border-primary rounded bg-primary">
                                 <a class="nav-link text-white" href="{{ route('add_question') }}">{{ __('Add Question') }}</a>
@@ -69,12 +67,12 @@
                                 <a class="nav-link text-white" href="/user/{{Auth::id()}}">{{ __('Profile') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ route('logout') }}"
+                                <a class="nav-link text-white" href=""
                                     onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="/logout" method="POST" style="display: none;">
                                     @csrf
                                 </form>
                             </li>

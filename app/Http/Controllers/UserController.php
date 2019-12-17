@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        dd(Auth::user());
     }
 
     /**
@@ -38,6 +38,33 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function login(Request $request){
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $remember = $request->input('remember');
+
+        if(Auth::attempt(['email'=>$email, 'password'=>$password])){
+            $response = \Response::make(redirect('/home'));
+            if($remember){
+                request()->session()->get('user');
+                $response->cookie('user_cookie', $email, 120);
+            }
+            return $response;
+        }
+        return redirect()->back();
+    }
+
+    public function logout(){
+
+        $response = \Response::make(redirect('/home'));
+
+        $response->cookie(\Cookie::forget('user_cookie'));
+
+        Auth::logout();
+
+        return $response;
     }
 
     /**

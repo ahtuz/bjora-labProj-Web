@@ -11,11 +11,32 @@
 |
 */
 
-Auth::routes();
+Route::get('/login', function(){
+    
+    if(request()->hasCookie('user_cookie')){
+        return redirect('/home');
+    }
+
+    return view('auth/login');
+});
+
+Route::group(['middleware'=>'login'], function(){
+    Route::get('/home', function(){
+        return view('home');
+    });
+});
+
+Route::post('/login', 'UserController@login')->name('login');
+
+Route::post('/logout', 'UserController@logout')->name('logout');
+
+// Route::get('/logout', 'UserController@logout')->name('logout');
+
+// Auth::routes();
 
 // Route::view('/master_page', 'master_page')->name('master_page');
 
-// Route::view('/add_user', 'add_user')->name('add_user');
+Route::view('register', 'auth/register')->name('register');
 
 Route::get('/', 'HomeController@index')->name('home');
 
@@ -64,3 +85,5 @@ Route::get('/admin/label', 'LabelController@index')->name('view_label');
 Route::get('/admin/label/{id}/delete', 'LabelController@destroy')->name('delete_label');
 
 Route::get('/admin/label/{id}/update', 'LabelController@edit')->name('edit_label');
+
+Route::get('/authe', 'UserController@index');
