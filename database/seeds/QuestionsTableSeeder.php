@@ -24,7 +24,7 @@ class QuestionsTableSeeder extends Seeder
 	        [
                 'user_id' => 1,
 	            'question_detail' => "How to consider yourself a good artist?",
-				'label_id' => 1,
+				'label_id' => 3,
 				'status' => 1,
 				'created_at' => "2019-11-19 06:34:20",
 				'updated_at' => "2019-11-19 06:34:20",

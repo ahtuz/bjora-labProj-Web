@@ -4,6 +4,7 @@ namespace Bjora\Http\Controllers;
 
 use Bjora\Question;
 use Bjora\Answer;
+use Bjora\Label;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +27,8 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        return view('question/add_question');
+        $labels = Label::all();
+        return view('question/add_question', compact('labels'));
     }
 
     /**
@@ -40,13 +42,13 @@ class QuestionController extends Controller
         // validation for newly added question
         $request->validate([
             'question_detail'=>'required',
-            'question_label'=>'required',
+            'label_id'=>'required',
         ]);
 
         $question = new Question();
         $question->user_id = auth()->user()->id;
         $question->question_detail = $request->question_detail;
-        $question->question_label = $request->question_label;
+        $question->label_id = $request->label_id;
         $question->status = 1;
         $question->save();
 
@@ -74,8 +76,9 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
+        $labels = Label::all();
         $question = Question::find($id);
-        return view('question/edit_question', ['question'=>$question]);
+        return view('question/edit_question', ['question'=>$question], compact('labels'));
     }
 
     /**
@@ -89,12 +92,12 @@ class QuestionController extends Controller
     {
         $request->validate([
             'question_detail'=>'required',
-            'question_label'=>'required',
+            'label_id'=>'required',
         ]);
 
         $question = Question::find($id);
         $question->question_detail = $request->question_detail;
-        $question->question_label = $request->question_label;
+        $question->label_id = $request->label_id;
         $question->save();
 
         return redirect()->route('view_user_questions', Auth::id());

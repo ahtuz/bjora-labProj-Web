@@ -13,7 +13,7 @@ class LabelsTableSeeder extends Seeder
     {
         DB::table('question_labels')->insert([
     		[
-				'question_label' => "Art",
+				'question_label' => "Unspecified",
 				'created_at' => "2019-11-19 08:34:20",
 				'updated_at' => "2019-11-19 08:34:20",
             ],
@@ -23,7 +23,7 @@ class LabelsTableSeeder extends Seeder
 				'updated_at' => "2019-11-19 08:34:20",
             ],
             [
-				'question_label' => "Unspecified",
+				'question_label' => "Art",
 				'created_at' => "2019-11-19 08:34:20",
 				'updated_at' => "2019-11-19 08:34:20",
             ],

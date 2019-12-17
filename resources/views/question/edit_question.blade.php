@@ -25,34 +25,25 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="question_label" class="col-md-3 col-form-label text-md-right">{{ __('Question Label') }}</label>
+                            <label for="label_id" class="col-md-3 col-form-label text-md-right">{{ __('Question Label') }}</label>
 
                             <div class="col-md-8">
-                            <select class="custom-select @error('question_label') is-invalid @enderror" name="question_label" id="question_label" type="text" value="{{ $question->question_label }}">
-                                <option selected value="{{ $question->question_label }}">{{ $question->question_label }}</option>
-                                @if($question->question_label != "Unspecified")
-                                    <option value="Unspecified">Unspecified</option>
-                                @endif
-                                @if($question->question_label != "Art")
-                                    <option value="Art">Art</option>
-                                @endif
-                                @if($question->question_label != "Gaming")
-                                    <option value="Gaming">Gaming</option>
-                                @endif
-                                @if($question->question_label != "Finance")
-                                    <option value="Finance">Finance</option>
-                                @endif
-                                @if($question->question_label != "Health")    
-                                    <option value="Health">Health</option>
-                                @endif
-                                @if($question->question_label != "Music")    
-                                    <option value="Music">Music</option>
-                                @endif
-                                @if($question->question_label != "Technology")
-                                    <option value="Technology">Technology</option>
-                                @endif
+                            <select class="custom-select @error('label_id') is-invalid @enderror" name="label_id" id="label_id" type="text">
+                                <!-- show the actual (original) selected question topic/label -->
+                                @foreach ($labels as $l)
+                                    @if( $l->id === $question->label_id )
+                                        <option value="{{ $l->id }}">{{ $l->question_label }}</option>
+                                    @endif
+                                @endforeach
+                                
+                                <!-- show the rest of labels/topics -->
+                                @foreach ($labels as $l)
+                                    @if( $l->id != $question->label_id )
+                                        <option value="{{ $l->id }}">{{ $l->question_label }}</option>
+                                    @endif
+                                @endforeach
                             </select>
-                                @error('question_label')
+                                @error('label_id')
                                     <div class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                     </div>

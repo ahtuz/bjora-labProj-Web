@@ -25,19 +25,15 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="question_label" class="col-md-3 col-form-label text-md-right">{{ __('Question Label') }}</label>
+                            <label for="label_id" class="col-md-3 col-form-label text-md-right">{{ __('Question Label') }}</label>
 
                             <div class="col-md-8">
-                            <select class="custom-select @error('question_label') is-invalid @enderror" name="question_label" id="question_label" type="text" value="{{ old('question_label') }}">
-                                <option selected value="Unspecified">Unspecified</option>
-                                <option value="Art">Art</option>
-                                <option value="Gaming">Gaming</option>
-                                <option value="Finance">Finance</option>
-                                <option value="Health">Health</option>
-                                <option value="Music">Music</option>
-                                <option value="Technology">Technology</option>
+                            <select class="custom-select @error('label_id') is-invalid @enderror" name="label_id" id="label_id" type="text">
+                                @foreach ($labels as $l)
+                                    <option value="{{ $l->id }}">{{ $l->question_label }}</option>
+                                @endforeach
                             </select>
-                                @error('question_label')
+                                @error('label_id')
                                     <div class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                     </div>
