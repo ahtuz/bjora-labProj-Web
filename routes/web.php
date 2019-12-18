@@ -26,15 +26,17 @@ Route::group(['middleware'=>'login'], function(){
     });
 });
 
+Route::group(['middleware'=>'isadmin'], function(){
+    Route::get('/admin', function(){
+        return "Admin Logged In";
+    });
+});
+
 Route::post('/login', 'UserController@login')->name('login');
 
 Route::post('/logout', 'UserController@logout')->name('logout');
 
-// Route::get('/logout', 'UserController@logout')->name('logout');
-
 // Auth::routes();
-
-// Route::view('/master_page', 'master_page')->name('master_page');
 
 Route::view('register', 'auth/register')->name('register');
 

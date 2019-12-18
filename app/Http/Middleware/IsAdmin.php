@@ -5,7 +5,7 @@ namespace Bjora\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class LoginMiddleware
+class IsAdmin
 {
     /**
      * Handle an incoming request.
@@ -16,8 +16,11 @@ class LoginMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check() || $request->hasCookie('user_cookie')){
-            return $next($request);
+        if(Auth::check()){
+            if(Auth::user()->role === "admin"){
+                return $next($request);
+            }
+            return redirect()->back();
         }
         return redirect()->back();
     }
