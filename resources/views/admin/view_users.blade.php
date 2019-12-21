@@ -36,7 +36,8 @@
                                 <td class="align-middle">{{ $user->birthday }}</td>
                                 <td class="align-middle">
                                     <a href="{{ route('show_user', $user->id) }}" class="d-block badge badge-pill badge-secondary mb-2">View</a>
-                                    <a href="{{ route('show_user', $user->id) }}" class="d-block badge badge-pill badge-success">Edit</a>
+                                    <a href="{{ route('admin_edit_user', $user->id) }}" class="d-block badge badge-pill badge-success mb-2">Edit</a>
+                                    <a href="{{ route('admin_delete_user', $user->id) }}" class="d-block badge badge-pill badge-danger">Delete</a>
                                 </td>
                             </tr>
                         @endforeach

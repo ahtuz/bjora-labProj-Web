@@ -36,7 +36,9 @@ class LabelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Label::firstOrCreate(['question_label' => $request->question_label]);
+        $question_labels = Label::paginate(10);
+        return view('/admin/view_question_label', compact('question_labels'));
     }
 
     /**
@@ -56,9 +58,10 @@ class LabelController extends Controller
      * @param  \Bjora\Label  $label
      * @return \Illuminate\Http\Response
      */
-    public function edit(Label $label)
+    public function edit(Label $label, $id)
     {
-        //
+        $label = Label::find($id);
+        return view('edit_label', compact('label'));
     }
 
     /**

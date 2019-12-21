@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model
 {
+
+    protected $fillable = [
+        'answer_detail',
+    ];
+
     // relationship to user (one to many inverse)
     public function user()
     {

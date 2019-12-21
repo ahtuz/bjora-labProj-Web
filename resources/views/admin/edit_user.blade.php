@@ -5,17 +5,17 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Add New User') }}</div>
+                <div class="card-header">{{ __('Edit User Profile') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/admin/add_user" enctype="multipart/form-data">
+                    <form method="POST" action="/admin/{{ $user->id }}/edit" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
                             <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
 
                             <div class="col-md-6">
-                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ $user->username }}" required autocomplete="username" autofocus>
 
                                 @error('username')
                                     <div class="invalid-feedback" role="alert">
@@ -29,7 +29,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -65,19 +65,35 @@
                             <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
                             <div class="col-md-6 mt-2">
+                                @if($user->gender == "male")
+                                    <div class="form-check form-check-inline">
+                                        <input checked class="form-check-input" type="radio" name="gender" id="gender" value="Male">
+                                        <label class="form-check-label" for="gender">Male</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender" id="gender" value="Female">
+                                        <label class="form-check-label" for="gender">Female</label>
+                                    </div>
+                                    @error('gender')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                @else
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" id="gender" value="Male">
-                                    <label class="form-check-label" for="gender">Male</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" id="gender" value="Female">
-                                    <label class="form-check-label" for="gender">Female</label>
-                                </div>
-                                @error('gender')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                        <input class="form-check-input" type="radio" name="gender" id="gender" value="Male">
+                                        <label class="form-check-label" for="gender">Male</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input checked class="form-check-input" type="radio" name="gender" id="gender" value="Female">
+                                        <label class="form-check-label" for="gender">Female</label>
+                                    </div>
+                                    @error('gender')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                @endif
                             </div>
                         </div>
 
@@ -85,7 +101,7 @@
                             <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
                             <div class="col-md-6">
-                                <textarea class="form-control @error('address') is-invalid @enderror" id="address" rows="3" name="address" required autocomplete="address" autofocus>{{ old('address') }}</textarea>
+                                <textarea class="form-control @error('address') is-invalid @enderror" id="address" rows="3" name="address" required autocomplete="address" autofocus>{{ $user->address }}</textarea>
 
                                 @error('address')
                                     <span class="invalid-feedback" role="alert">
@@ -99,7 +115,7 @@
                             <label for="birthday" class="col-md-4 col-form-label text-md-right">{{ __('Birthday') }}</label>
 
                             <div class="col-md-6">
-                                <input id="birthday" type="date" class="form-control @error('birthday') is-invalid @enderror" name="birthday" value="{{ old('birthday') }}" required autocomplete="birthday">
+                                <input id="birthday" type="date" class="form-control @error('birthday') is-invalid @enderror" name="birthday" value="{{ $user->birthday }}" required autocomplete="birthday">
 
                                 @error('birthday')
                                     <span class="invalid-feedback" role="alert">
@@ -113,21 +129,37 @@
                             <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
                             
                         <div class="col-md-6 mt-2">
-                            <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" id="role" value="admin">
-                                    <label class="form-check-label" for="role">Admin</label>
-                                </div>
+                                @if($user->role == "admin")
+                                    <div class="form-check form-check-inline">
+                                        <input checked class="form-check-input" type="radio" name="role" id="role" value="admin">
+                                        <label class="form-check-label" for="role">Admin</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="role" id="role" value="Member">
+                                        <label class="form-check-label" for="role">Member</label>
+                                    </div>
+                                    @error('role')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                @else
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="role" id="role" value="member">
-                                    <label class="form-check-label" for="role">Member</label>
-                                </div>
-                                @error('role')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                        <input class="form-check-input" type="radio" name="role" id="role" value="admin">
+                                        <label class="form-check-label" for="role">Admin</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input checked class="form-check-input" type="radio" name="role" id="role" value="Member">
+                                        <label class="form-check-label" for="role">Member</label>
+                                    </div>
+                                    @error('role')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                @endif
                             </div>
-                        </div>                
+                        </div>             
 
                         <div class="form-group row">
                             <label for="profile_picture" class="col-md-4 col-form-label text-md-right">{{ __('Upload Profile Picture') }}</label>
@@ -151,7 +183,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Add User') }}
+                                    {{ __('Save Edits') }}
                                 </button>
                             </div>
                         </div>

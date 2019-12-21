@@ -29,7 +29,16 @@ Route::group(['middleware'=>'login'], function(){
 Route::group(['middleware'=>'isadmin'], function(){
     Route::get('/admin/view_users', 'AdminController@view_users')->name('view_users');
     Route::get('/admin/add_user', 'AdminController@add_user')->name('add_user');
-    Route::get('/admin/view_question_label', 'AdminController@view_labels')->name('view_labels');
+    Route::post('/admin/add_user', 'AdminController@store_user');
+    Route::get('/admin/{id}/edit', 'AdminController@edit_user')->name('admin_edit_user');
+    Route::post('/admin/{id}/edit', 'AdminController@update_user');
+    Route::get('/admin/{id}/delete', 'AdminController@delete_user')->name('admin_delete_user');
+
+    Route::get('/admin/label/add', 'LabelController@create')->name('add_label');
+    Route::post('/admin/label', 'LabelController@store');
+    Route::get('/admin/label', 'LabelController@index')->name('view_label');
+    Route::get('/admin/label/{id}/delete', 'LabelController@destroy')->name('delete_label');
+    Route::get('/admin/label/{id}/update', 'LabelController@edit')->name('edit_label');
 });
 
 Route::post('/login', 'UserController@login')->name('login');
@@ -80,12 +89,6 @@ Route::get('/message/{id}/delete', 'MessageController@destroy')->name('delete_me
 
 Route::get('/search', 'HomeController@searchIndex')->name('home_search');
 
-Route::get('/admin/label/add', 'LabelController@create')->name('add_label');
 
-Route::get('/admin/label', 'LabelController@index')->name('view_label');
-
-Route::get('/admin/label/{id}/delete', 'LabelController@destroy')->name('delete_label');
-
-Route::get('/admin/label/{id}/update', 'LabelController@edit')->name('edit_label');
 
 Route::get('/authe', 'UserController@index');

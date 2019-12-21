@@ -120,6 +120,7 @@ class UserController extends Controller
             'password' => 'required|string|min:6|confirmed|alpha_num',
             'gender' => 'required',
             'address' => 'required',
+            'role' => 'required',
             'birthday' => 'required|date_format:Y-m-d',
             'profile_picture' => 'required|mimes:jpg,jpeg,png',
         ]);
@@ -133,7 +134,7 @@ class UserController extends Controller
         $user->profile_picture = $filename;
         $user->save();
 
-        return redirect()->route('user/show_user', $id);
+        return redirect()->route('show_user', $id);
     }
 
     /**
