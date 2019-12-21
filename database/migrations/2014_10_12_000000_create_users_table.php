@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('address');
             $table->date('birthday');
             $table->string('profile_picture');
-            $table->string('role')->default('user');
+            $table->string('role')->default('member');
             $table->rememberToken();
             $table->timestamps();
         });

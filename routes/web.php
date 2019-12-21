@@ -27,9 +27,9 @@ Route::group(['middleware'=>'login'], function(){
 });
 
 Route::group(['middleware'=>'isadmin'], function(){
-    Route::get('/admin', function(){
-        return "Admin Logged In";
-    });
+    Route::get('/admin/view_users', 'AdminController@view_users')->name('view_users');
+    Route::get('/admin/add_user', 'AdminController@add_user')->name('add_user');
+    Route::get('/admin/view_question_label', 'AdminController@view_labels')->name('view_labels');
 });
 
 Route::post('/login', 'UserController@login')->name('login');
