@@ -12,8 +12,9 @@
 9. You can open your XAMPP while waiting, turn on Apache and MySQL.
 10. On browser, type `localhost/phpmyadmin` and enter.
 11. Create new database "bjora" (without quotes).
-12. After the composer update finished, try to `php artisan migrate` in the text editor terminal.
-13. Finally, `php artisan serve`.
+12. After the composer update finished, type `php artisan migrate:fresh --seed` in the text editor terminal.
+13. Previous command will create you table and all dummy data in the seeder.
+14. Finally, `php artisan serve`.
 
 # To overwrite all data on pull:
 > *(I suppose you already in the project folder)*
