@@ -38,14 +38,32 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                     @guest
-
+                        <!-- not logged in user, display nothing -->
                         @else
-                            <li class="nav-item pl-2">
-                                <a class="nav-link text-white" href="/user/{{ Auth::id() }}/questions">{{ __('My Question') }}</a>
-                            </li>
-                            <li class="nav-item pl-1">
-                                <a class="nav-link text-white" href="/user/{{ Auth::id() }}/inbox">{{ __('Inbox') }}</a>
-                            </li>
+                            <!-- check if user admin/member -->
+                            @if(Auth::user()->role === "admin")
+                                <!-- if user is admin show manage options -->
+                                <li class="nav-item pl-2">
+                                    <div class="dropdown">
+                                    <button class="btn btn-outline-light dropdown-toggle btn-sm" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Manage
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                        <button class="dropdown-item" type="button"><a href="{{ route('view_users') }}" class="text-dark" style="text-decoration:none;">User</a></button>
+                                        <button class="dropdown-item" type="button"><a href="{{ route('admin_view_questions') }}" class="text-dark" style="text-decoration:none;">Question</a></button>
+                                        <button class="dropdown-item" type="button"><a href="{{ route('view_label') }}" class="text-dark" style="text-decoration:none;">Question Label/Topic</a></button>
+                                    </div>
+                                    </div>
+                                </li>
+                            @else
+                                <!-- user is member, show question and inbox -->
+                                <li class="nav-item pl-2">
+                                    <a class="nav-link text-white" href="/user/{{ Auth::id() }}/questions">{{ __('My Question') }}</a>
+                                </li>
+                                <li class="nav-item pl-1">
+                                    <a class="nav-link text-white" href="/user/{{ Auth::id() }}/inbox">{{ __('Inbox') }}</a>
+                                </li>
+                            @endif
                     @endguest
                     </ul>
 
@@ -60,9 +78,12 @@
                                 <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                         @else
-                            <li class="nav-item border border-primary rounded bg-primary">
-                                <a class="nav-link text-white" href="{{ route('add_question') }}">{{ __('Add Question') }}</a>
-                            </li>
+                            <!-- show add question if user's role is member -->
+                            @if(Auth::user()->role === "member")
+                                <li class="nav-item border border-primary rounded bg-primary">
+                                    <a class="nav-link text-white" href="{{ route('add_question') }}">{{ __('Add Question') }}</a>
+                                </li>
+                            @endif
                             <li class="nav-item pl-4 pr-4">
                                 <a class="nav-link text-white" href="/user/{{Auth::id()}}">{{ __('Profile') }}</a>
                             </li>

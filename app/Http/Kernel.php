@@ -62,6 +62,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'login' => \Bjora\Http\Middleware\LoginMiddleware::class,
         'isadmin' => \Bjora\Http\Middleware\IsAdmin::class,
+        'isowner' => \Bjora\Http\Middleware\IsOwner::class,
     ];
 
     /**

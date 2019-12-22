@@ -39,13 +39,18 @@ Route::group(['middleware'=>'isadmin'], function(){
     Route::get('/admin/label', 'LabelController@index')->name('view_label');
     Route::get('/admin/label/{id}/delete', 'LabelController@destroy')->name('delete_label');
     Route::get('/admin/label/{id}/update', 'LabelController@edit')->name('edit_label');
+
+    Route::get('/admin/question', 'AdminController@view_questions')->name('admin_view_questions');
+    Route::get('/question/{id}/update', 'QuestionController@edit')->name('edit_question');
+});
+
+Route::group(['middleware'=>'isowner'], function(){
+    Route::get('/question/{id}/update', 'QuestionController@edit')->name('edit_question');
 });
 
 Route::post('/login', 'UserController@login')->name('login');
 
 Route::post('/logout', 'UserController@logout')->name('logout');
-
-// Auth::routes();
 
 Route::view('register', 'auth/register')->name('register');
 
@@ -63,7 +68,7 @@ Route::get('/question/{id}', 'QuestionController@show')->name('show_question');
 
 Route::post('/question/{id}', 'AnswerController@store')->name('add_answer');
 
-Route::get('/question/{id}/update', 'QuestionController@edit')->name('edit_question');
+// Route::get('/question/{id}/update', 'QuestionController@edit')->name('edit_question');
 
 Route::post('/question/{id}/update', 'QuestionController@update')->name('update_question');
 

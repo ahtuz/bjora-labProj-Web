@@ -180,4 +180,9 @@ class AdminController extends Controller
         return redirect()->route('view_users');
     }
 
+    public function view_questions(){
+        $questions = Question::paginate(10);
+        return view('admin/view_questions', compact('questions'));
+    }
+
 }

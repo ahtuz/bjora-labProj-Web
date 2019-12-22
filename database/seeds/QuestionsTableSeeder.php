@@ -13,8 +13,8 @@ class QuestionsTableSeeder extends Seeder
     {
 		// seeder for questions table
         DB::table('questions')->insert([
-    		[
-                'user_id' => 1,
+			[
+                'user_id' => 4,
 	            'question_detail' => "Do I Really Need to “Eject” USB Drives?",
 				'label_id' => 6,
 				'status' => 1,
@@ -22,7 +22,7 @@ class QuestionsTableSeeder extends Seeder
 				'updated_at' => "2019-11-19 02:34:20",
 	        ],
 	        [
-                'user_id' => 1,
+                'user_id' => 5,
 	            'question_detail' => "How to consider yourself a good artist?",
 				'label_id' => 3,
 				'status' => 1,
@@ -60,7 +60,7 @@ class QuestionsTableSeeder extends Seeder
 				'status' => 1,
 				'created_at' => "2019-11-19 02:34:20",
 				'updated_at' => "2019-11-19 02:34:20",
-	        ],
+			],
         ]);
     }
 }

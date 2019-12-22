@@ -28,7 +28,7 @@ class AnswersTableSeeder extends Seeder
 				'updated_at' => "2019-11-22 03:44:20",
 	        ],
 	        [
-                'user_id' => 3,
+                'user_id' => 4,
                 'question_id' => 2,
 	            'answer_detail' => "I'm not as good as I'd like to be, which is why I keep working. I call my work practice because that's what it is. Lots of practice and skill development.",
 				'created_at' => "2019-11-22 05:44:20",
@@ -42,7 +42,7 @@ class AnswersTableSeeder extends Seeder
 				'updated_at' => "2019-11-22 02:44:20",
             ],
             [
-                'user_id' => 1,
+                'user_id' => 4,
                 'question_id' => 3,
 	            'answer_detail' => "Finance is defined as the management of money and includes activities like investing, borrowing, lending, budgeting, saving, and forecasting.",
 				'created_at' => "2019-11-22 04:44:20",
@@ -56,7 +56,7 @@ class AnswersTableSeeder extends Seeder
 				'updated_at' => "2019-11-22 04:45:20",
             ],
             [
-                'user_id' => 3,
+                'user_id' => 5,
                 'question_id' => 4,
 	            'answer_detail' => "It's hard to get enough active play and exercise if you're always inside playing video games. And without enough exercise, kids can become overweight.",
 				'created_at' => "2019-11-22 04:47:20",

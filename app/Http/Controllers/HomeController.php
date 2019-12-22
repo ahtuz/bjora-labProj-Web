@@ -5,6 +5,7 @@ namespace Bjora\Http\Controllers;
 use Illuminate\Http\Request;
 use Bjora\Question;
 use Bjora\User;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {

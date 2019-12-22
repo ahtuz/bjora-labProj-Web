@@ -26,7 +26,7 @@
                         </a>
                         <div class="created_at text-secondary font-italic">Created at: {{ $question->created_at }}</div>
                         <div class="position-relative d-flex justify-content-end">
-                            <div> 
+                            <div>
                                 <div class="d-inline mr-2">
                                     <a class="text-dark" style="text-decoration:none;" href="/user/{{ $question->user_id }}">{{ $question->user->username }}
                                     </a>
