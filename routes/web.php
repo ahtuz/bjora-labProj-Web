@@ -40,12 +40,19 @@ Route::group(['middleware'=>'isadmin'], function(){
     Route::get('/admin/label/{id}/delete', 'LabelController@destroy')->name('delete_label');
     Route::get('/admin/label/{id}/update', 'LabelController@edit')->name('edit_label');
 
+    Route::get('/question/{id}', 'QuestionController@show')->name('show_question');
     Route::get('/admin/question', 'AdminController@view_questions')->name('admin_view_questions');
-    Route::get('/question/{id}/update', 'QuestionController@edit')->name('edit_question');
+    Route::get('/admin/question/{id}/update', 'QuestionController@edit')->name('admin_edit_question');
+    Route::post('/admin/question/{id}/update', 'QuestionController@update')->name('admin_update_question');
+    Route::get('/admin/question/{id}/delete', 'QuestionController@destroy')->name('admin_delete_question');
+    Route::post('/admin/question/{id}/change_status', 'QuestionController@change_status')->name('admin_change_status');
 });
 
 Route::group(['middleware'=>'isowner'], function(){
+    Route::get('/question/{id}', 'QuestionController@show')->name('show_question');
     Route::get('/question/{id}/update', 'QuestionController@edit')->name('edit_question');
+    Route::post('/question/{id}/update', 'QuestionController@update')->name('update_question');
+    Route::get('/question/{id}/delete', 'QuestionController@destroy')->name('delete_question');
 });
 
 Route::post('/login', 'UserController@login')->name('login');
@@ -68,12 +75,6 @@ Route::get('/question/{id}', 'QuestionController@show')->name('show_question');
 
 Route::post('/question/{id}', 'AnswerController@store')->name('add_answer');
 
-// Route::get('/question/{id}/update', 'QuestionController@edit')->name('edit_question');
-
-Route::post('/question/{id}/update', 'QuestionController@update')->name('update_question');
-
-Route::get('/question/{id}/delete', 'QuestionController@destroy')->name('delete_question');
-
 Route::get('/user/{id}', 'UserController@show')->name('show_user');
 
 Route::get('/user/{id}/questions', 'UserController@viewQuestion')->name('view_user_questions');
@@ -93,7 +94,3 @@ Route::get('/user/{id}/inbox', 'MessageController@show')->name('inbox');
 Route::get('/message/{id}/delete', 'MessageController@destroy')->name('delete_message');
 
 Route::get('/search', 'HomeController@searchIndex')->name('home_search');
-
-
-
-Route::get('/authe', 'UserController@index');

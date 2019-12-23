@@ -18,7 +18,7 @@ class CreateQuestionTable extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('label_id')->default(1);
             $table->String('question_detail');
-            $table->smallInteger('status');
+            $table->smallInteger('status')->default(1);
             $table->timestamps();
         });
     }

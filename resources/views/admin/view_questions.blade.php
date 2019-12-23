@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/switchery/0.8.2/switchery.min.js"></script>
+
 <div class="container">
     
     <div class="row justify-content-center">
@@ -27,16 +31,22 @@
                         <td class="align-middle">{{ $question->question_detail }}</td>
                         <td class="align-middle">
                             @if($question->status == 1)
-                                <a href="#" class="badge badge-success d-inline mr-1">Active</a>
+                            <form action="{{ route('admin_change_status', $question->id) }}" method="POST">
+                            {{csrf_field()}}
+                                <button type="sumbit" class="btn btn-sm btn-success" name="status" value="0">Open</button>
+                            </form>
                             @else
-                                <a href="#" class="badge badge-danger d-inline mr-1">Closed</a>
+                            <form action="{{ route('admin_change_status', $question->id) }}" method="POST">
+                            {{csrf_field()}}
+                                <button type="sumbit" class="btn btn-sm btn-danger" name="status" value="1">Close</button>
+                            </form>
                             @endif
                         </td>
                         <td class="align-middle">
                             <div class="d-flex">
                                 <a href="{{ route('show_question', $question->id) }}" class="badge badge-secondary d-inline mr-1">View</a>
-                                <a href="{{ route('update_question', $question->id) }}" class="badge badge-success d-inline mr-1">Edit</a>
-                                <a href="{{ route('delete_question', $question->id) }}" class="badge badge-danger d-inline">Delete</a>
+                                <a href="{{ route('admin_edit_question', $question->id) }}" class="badge badge-success d-inline mr-1">Edit</a>
+                                <a href="{{ route('admin_delete_question', $question->id) }}" class="badge badge-danger d-inline">Delete</a>
                             </div>
                         </td>
                     </tr>

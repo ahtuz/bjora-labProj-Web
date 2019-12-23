@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
 
@@ -24,7 +25,7 @@
                         <a style="text-decoration:none;" href="/question/{{ $question->id }}">
                             <h3 class="text-dark">{{ $question->question_detail }}</h3>
                         </a>
-                        <div class="created_at text-secondary font-italic">Created at: {{ $question->created_at }}</div>
+                        <div class="created_at text-secondary font-italic">Created at: {{ $question->created_at->diffForHumans() }}</div>
                         <div class="position-relative d-flex justify-content-end">
                             <div>
                                 <div class="d-inline mr-2">

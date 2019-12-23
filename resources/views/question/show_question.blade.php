@@ -10,18 +10,20 @@
                         <div class="d-flex font-weight-bold text-danger justify-content">
                             {{ $question->question_label }}
                         </div>
-                        @if( $question->status == 1)
-                            <div class="d-inline">
-                                <a href="#" style="text-decoration:none;" class="text-white badge badge-pill badge-success">Open</a>
-                            </div>
+                        @if($question->status == 1)
+                        <form action="{{ route('admin_change_status', $question->id) }}" method="POST">
+                        {{csrf_field()}}
+                            <button type="sumbit" class="text-white badge badge-pill badge-success" name="status" value="0">Open</button>
+                        </form>
                         @else
-                            <div class="d-inline">
-                                <a href="#" style="text-decoration:none;" class="text-white align-middle badge badge-pill badge-danger">Closed</a>
-                            </div>
+                        <form action="{{ route('admin_change_status', $question->id) }}" method="POST">
+                        {{csrf_field()}}
+                            <button type="sumbit" class="text-white align-middle badge badge-pill badge-danger" name="status" value="1">Close</button>
+                        </form>
                         @endif
                     </div>
                     <h2>{{ $question->question_detail }}</h2>
-                    <div class="created_at text-secondary font-italic">Asked at {{ $question->created_at }}</div>
+                    <div class="created_at text-secondary font-italic">Asked at {{ $question->created_at->diffForHumans() }}</div>
                     <div class="position-relative d-flex justify-content-end">
                         <div>
                             <div class="d-inline mr-2">{{ $question->user->username }}</div>
@@ -35,21 +37,25 @@
             @if( Auth::id() == $question->user->id )
 
                 @else
-                <br>
-                <div class="card">
-                    <div class="card-header">Add Your Answer</div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('add_answer', $question->id) }}">
-                            @csrf
-                            <textarea class="form-control d-inline" id="answer_detail" rows="4" name="answer_detail"></textarea>
-                            <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary">
-                                    Submit Answer
-                                </button>
-                            </div>
-                        </form>
+
+                    @if( $question->status == 1)
+                    <br>
+                    <div class="card">
+                        <div class="card-header">Add Your Answer</div>
+                        <div class="card-body">
+                            <form method="POST" action="{{ route('add_answer', $question->id) }}">
+                                @csrf
+                                <textarea class="form-control d-inline" id="answer_detail" rows="4" name="answer_detail"></textarea>
+                                <div class="d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary">
+                                        Submit Answer
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                    @endif
+
             @endif
             <br>
             <div class="card">

@@ -103,6 +103,15 @@ class QuestionController extends Controller
         return redirect()->route('view_user_questions', Auth::id());
     }
 
+    public function change_status(Request $request, $id){
+
+        $question = Question::find($id);
+        $question->status = $request->status;
+        $question->save();
+
+        return redirect()->back();
+    }
+
     /**
      * Remove the specified resource from storage.
      *
