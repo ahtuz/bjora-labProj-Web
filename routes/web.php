@@ -27,6 +27,7 @@ Route::group(['middleware'=>'login'], function(){
 });
 
 Route::group(['middleware'=>'isadmin'], function(){
+    // check if the logged in user is admin
     Route::get('/admin/view_users', 'AdminController@view_users')->name('view_users');
     Route::get('/admin/add_user', 'AdminController@add_user')->name('add_user');
     Route::post('/admin/add_user', 'AdminController@store_user');
@@ -51,10 +52,12 @@ Route::group(['middleware'=>'isadmin'], function(){
 });
 
 Route::group(['middleware'=>'isowner'], function(){
-    Route::get('/question/{id}', 'QuestionController@show')->name('show_question');
+    // middleware to check is the logged in user is  owner
     Route::get('/question/{id}/update', 'QuestionController@edit')->name('edit_question');
     Route::post('/question/{id}/update', 'QuestionController@update')->name('update_question');
     Route::get('/question/{id}/delete', 'QuestionController@destroy')->name('delete_question');
+
+    Route::post('/question/{id}/change_status', 'QuestionController@change_status')->name('change_status');
 });
 
 Route::post('/login', 'UserController@login')->name('login');
@@ -67,6 +70,8 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/search', 'HomeController@searchIndex')->name('home_search');
+
 Route::post('/question', 'QuestionController@store');
 
 Route::get('/question/create', 'QuestionController@create')->name('add_question');
@@ -74,8 +79,6 @@ Route::get('/question/create', 'QuestionController@create')->name('add_question'
 Route::get('/question', 'QuestionController@index')->name('view_questions');
 
 Route::get('/question/{id}', 'QuestionController@show')->name('show_question');
-
-Route::post('/question/{id}', 'AnswerController@store')->name('add_answer');
 
 Route::get('/user/{id}', 'UserController@show')->name('show_user');
 
@@ -87,12 +90,14 @@ Route::get('/user/{id}/update', 'UserController@edit')->name('edit_user');
 
 Route::get('/user/{id}/delete', 'UserController@destroy')->name('delete_user');
 
+// answer
+Route::post('/question/{id}', 'AnswerController@store')->name('add_answer');
+
 Route::get('/answer/{id}/update', 'AnswerController@edit')->name('edit_answer');
 
+// message
 Route::post('/user/{id}', 'MessageController@store')->name('send_message');
 
 Route::get('/user/{id}/inbox', 'MessageController@show')->name('inbox');
 
 Route::get('/message/{id}/delete', 'MessageController@destroy')->name('delete_message');
-
-Route::get('/search', 'HomeController@searchIndex')->name('home_search');

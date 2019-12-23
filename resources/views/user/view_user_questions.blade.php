@@ -17,32 +17,48 @@
                 </div>
             </div>
         </form>
-            <div class="card">
-                <div class="card-header">Questions</div>
+            <table class="table table-bordered table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Topic</th>
+                    <th scope="col">Owner</th>
+                    <th scope="col">Question Detail</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
                 @foreach($questions as $question)
-                    <div class="card-body shadow-sm">
-                        <div class="position-relative d-flex justify-content-end font-weight-bold text-danger">{{ $question->label->question_label }}</div>
-                        <a style="text-decoration:none;" href="/question/{{ $question->id }}">
-                            <h3 class="text-dark">{{ $question->question_detail }}</h3>
-                        </a>
-                        <div class="created_at text-secondary font-italic">Created at: {{ $question->created_at->diffForHumans() }}</div>
-                        <div class="position-relative d-flex justify-content-end">
-                            <div>
-                                <div class="d-inline mr-2">
-                                    <a class="text-dark" style="text-decoration:none;" href="/user/{{ $question->user_id }}">{{ $question->user->username }}
-                                    </a>
-                                </div>
-                                <div class="d-inline">
-                                    <a href="/user/{{ $question->user_id }}"><img src="{{ asset('storage/profile_pictures/'.$question->user->profile_picture) }}" alt="No Image" srcset="" class="rounded-circle" style="width:50px; height:50px;"></a>
-                                </div>
+                    <tr>
+                        <th scope="row" class="align-middle">{{ $question->id }}</th>
+                        <td class="align-middle">{{ $question->label->question_label }}</td>
+                        <td class="align-middle">{{ $question->user->username }}</td>
+                        <td class="align-middle">{{ $question->question_detail }}</td>
+                        <td class="align-middle">
+                            @if($question->status == 1)
+                            <form action="{{ route('change_status', $question->id) }}" method="POST">
+                            {{csrf_field()}}
+                                <button type="sumbit" class="btn btn-sm btn-success" name="status" value="0">Open</button>
+                            </form>
+                            @else
+                            <form action="{{ route('change_status', $question->id) }}" method="POST">
+                            {{csrf_field()}}
+                                <button type="sumbit" class="btn btn-sm btn-danger" name="status" value="1">Close</button>
+                            </form>
+                            @endif
+                        </td>
+                        <td class="align-middle">
+                            <div class="d-flex">
+                                <a href="{{ route('show_question', $question->id) }}" class="badge badge-secondary d-inline mr-1">View</a>
+                                <a href="{{ route('edit_question', $question->id) }}" class="badge badge-success d-inline mr-1">Edit</a>
+                                <a href="{{ route('delete_question', $question->id) }}" class="badge badge-danger d-inline">Delete</a>
                             </div>
-                        </div>
-                        <a class="btn btn-info" href="/question/{{ $question->id }}" role="button">See Answer</a>
-                        <a class="btn btn-warning" href="/question/{{ $question->id }}/update" role="button">Edit</a>
-                        <a class="btn btn-danger" href="/question/{{ $question->id }}/delete" role="button">Delete</a>
-                    </div>
+                        </td>
+                    </tr>
                 @endforeach
-            </div>
+            </tbody>
+            </table>
             <div class="container m-2">
                 <div class="row justify-content-center">{{ $questions->links() }}</div>                
             </div>
