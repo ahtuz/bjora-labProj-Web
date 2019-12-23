@@ -61,7 +61,7 @@ class LabelController extends Controller
     public function edit(Label $label, $id)
     {
         $label = Label::find($id);
-        return view('edit_label', compact('label'));
+        return view('admin/edit_question_label', compact('label'));
     }
 
     /**
@@ -71,9 +71,14 @@ class LabelController extends Controller
      * @param  \Bjora\Label  $label
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Label $label)
+    public function update(Request $request, $id)
     {
-        //
+        $label = Label::find($id);
+        
+        $label->question_label = $request->question_label;
+        $label->save();
+
+        return redirect()->route('view_label');
     }
 
     /**

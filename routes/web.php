@@ -39,7 +39,9 @@ Route::group(['middleware'=>'isadmin'], function(){
     Route::get('/admin/label', 'LabelController@index')->name('view_label');
     Route::get('/admin/label/{id}/delete', 'LabelController@destroy')->name('delete_label');
     Route::get('/admin/label/{id}/update', 'LabelController@edit')->name('edit_label');
+    Route::post('/admin/label/{id}', 'LabelController@update')->name('update_label');
 
+    Route::get('/question/create', 'QuestionController@create')->name('add_question');
     Route::get('/question/{id}', 'QuestionController@show')->name('show_question');
     Route::get('/admin/question', 'AdminController@view_questions')->name('admin_view_questions');
     Route::get('/admin/question/{id}/update', 'QuestionController@edit')->name('admin_edit_question');
@@ -65,9 +67,9 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/question/create', 'QuestionController@create')->name('add_question');
-
 Route::post('/question', 'QuestionController@store');
+
+Route::get('/question/create', 'QuestionController@create')->name('add_question');
 
 Route::get('/question', 'QuestionController@index')->name('view_questions');
 

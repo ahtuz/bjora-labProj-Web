@@ -19,14 +19,14 @@
             <div class="card">
                 <div class="card-header">{{ __('Edit Question Label') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="/admin/label">
+                    <form method="POST" action="{{ route('update_label', $label->id) }}">
                         @csrf
 
                         <div class="form-group row">
                             <label for="question_label" class="col-md-4 col-form-label text-md-right">{{ __('Question Label') }}</label>
 
                             <div class="col-md-6">
-                                <input id="question_label" type="text" class="form-control @error('question_label') is-invalid @enderror" name="question_label" required value="{{ label->question_label }}" autocomplete="question_label" autofocus>
+                                <input id="question_label" type="text" class="form-control @error('question_label') is-invalid @enderror" name="question_label" required value="{{ $label->question_label }}" autocomplete="question_label" autofocus>
 
                                 @error('question_label')
                                     <div class="invalid-feedback" role="alert">

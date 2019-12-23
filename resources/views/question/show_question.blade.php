@@ -8,7 +8,7 @@
                 <div class="card-body shadow-sm">
                     <div class="d-flex justify-content-between">
                         <div class="d-flex font-weight-bold text-danger justify-content">
-                            {{ $question->question_label }}
+                            {{ $question->label->question_label }}
                         </div>
                         @if($question->status == 1)
                         <form action="{{ route('admin_change_status', $question->id) }}" method="POST">

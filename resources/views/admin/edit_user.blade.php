@@ -65,7 +65,7 @@
                             <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
                             <div class="col-md-6 mt-2">
-                                @if($user->gender == "male")
+                                @if($user->gender == "Male")
                                     <div class="form-check form-check-inline">
                                         <input checked class="form-check-input" type="radio" name="gender" id="gender" value="Male">
                                         <label class="form-check-label" for="gender">Male</label>
