@@ -82,9 +82,12 @@ class AnswerController extends Controller
      * @param  \Bjora\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Answer $answer)
+    public function update(Request $request, $id)
     {
-        //
+        $answer = Answer::find($id);
+        $answer->answer_detail = $request->answer_detail;
+        $answer->save();
+        return redirect()->route('show_question', $answer->question_id);
     }
 
     /**
@@ -93,8 +96,9 @@ class AnswerController extends Controller
      * @param  \Bjora\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Answer $answer)
+    public function destroy($id)
     {
-        //
+        Answer::destroy($id);
+        return redirect()->back();
     }
 }

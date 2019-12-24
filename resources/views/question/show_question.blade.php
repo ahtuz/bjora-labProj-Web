@@ -52,7 +52,8 @@
                     <div class="created_at text-secondary font-italic">Asked at {{ $question->created_at->diffForHumans() }}</div>
                     <div class="position-relative d-flex justify-content-end">
                         <div>
-                            <div class="d-inline mr-2">{{ $question->user->username }}</div>
+                            <a class="text-dark mr-2" style="text-decoration:none;" href="/user/{{ $question->user_id }}">{{ $question->user->username }}
+                            </a>
                             <div class="d-inline">
                             <a href="/user/{{ $question->user_id }}"><img src="{{ asset('storage/profile_pictures/'.$question->user->profile_picture) }}" alt="No Image" srcset="" class="rounded-circle" style="width:50px; height:50px;"></a>
                             </div>
@@ -60,29 +61,30 @@
                     </div>
                 </div>
             </div>
-            @if( Auth::id() == $question->user->id )
+            @guest
 
-                @else
-
-                    @if( $question->status == 1)
-                    <br>
-                    <div class="card">
-                        <div class="card-header">Add Your Answer</div>
-                        <div class="card-body">
-                            <form method="POST" action="{{ route('add_answer', $question->id) }}">
-                                @csrf
-                                <textarea class="form-control d-inline" id="answer_detail" rows="4" name="answer_detail"></textarea>
-                                <div class="d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary">
-                                        Submit Answer
-                                    </button>
+            @else
+                @if( Auth::id() == $question->user->id )
+                    @else
+                        @if( $question->status == 1)
+                            <br>
+                            <div class="card">
+                                <div class="card-header">Add Your Answer</div>
+                                <div class="card-body">
+                                    <form method="POST" action="{{ route('add_answer', $question->id) }}">
+                                        @csrf
+                                        <textarea class="form-control d-inline" id="answer_detail" rows="4" name="answer_detail"></textarea>
+                                        <div class="d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary">
+                                                Submit Answer
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                    @endif
-
-            @endif
+                            </div>
+                        @endif
+                @endif
+            @endguest
             <br>
             <div class="card">
                 <div class="card-header">Answers</div>
@@ -98,12 +100,14 @@
                                 <div class="answer-date mb-1 text-dark d-block position-relative">Answered at {{ $a->updated_at }}
                                 </div>
                             </div>
-                            <div class="d-inline position-relative">
-                                <a href="{{ route('admin_edit_question', $question->id) }}" class="badge badge-success">Edit</a>
-                                <a href="{{ route('admin_delete_question', $question->id) }}" class="badge badge-danger">Delete</a>
-                            </div>
                         </div>
                         <div>{{ $a->answer_detail }}</div>
+                        @if( Auth::id() == $a->user_id )
+                            <div class="d-flex position-relative justify-content-end mt-1">
+                                <a href="{{ route('edit_answer', $a->id) }}" class="badge badge-success mr-1">Edit</a>
+                                <a href="{{ route('delete_answer', $a->id) }}" class="badge badge-danger">Delete</a>
+                            </div>
+                        @endif
                     </div>
                 @endforeach
             </div>

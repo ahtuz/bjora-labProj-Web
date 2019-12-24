@@ -4,9 +4,10 @@ namespace Bjora\Http\Middleware;
 
 use Closure;
 use Bjora\User;
+use Bjora\Answer;
 use Illuminate\Support\Facades\Auth;
 
-class IsOwner
+class IsOwnerAnswer
 {
     /**
      * Handle an incoming request.
@@ -17,8 +18,10 @@ class IsOwner
      */
     public function handle($request, Closure $next)
     {
+        $user = Answer::find($request->id)->user_id;
+        
         if(Auth::check()){
-            if(Auth::id() == $request->id){
+            if(Auth::id() === $user){
                 return $next($request);
             }
             return redirect()->back();

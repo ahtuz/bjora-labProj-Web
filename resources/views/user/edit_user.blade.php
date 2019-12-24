@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Edit Profile') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('show_user', $user->id) }}" enctype="multipart/form-data">
+                    <form method="POST" action="/user/{{ $user->id }}/update" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">

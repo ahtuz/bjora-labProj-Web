@@ -36,7 +36,11 @@
                                 </div>
                             </div>
                         </div>
-                        <a class="btn btn-primary" href="/question/{{ $question->id }}" role="button">Answer</a>
+                        @guest
+
+                        @else
+                            <a class="btn btn-primary" href="/question/{{ $question->id }}" role="button">Answer</a>
+                        @endguest
                     </div>
                 @endforeach
             </div>

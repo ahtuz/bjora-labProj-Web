@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Edit Answer') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="/question/{{$question->id}}/update">
+                    <form method="POST" action="{{ route('update_answer', $answer->id) }}">
                         @csrf
 
                         <div class="form-group row">

@@ -6,6 +6,7 @@ use Bjora\User;
 use Bjora\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -16,7 +17,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        dd(Auth::user());
     }
 
     /**
@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('auth/register');
     }
 
     /**
@@ -37,7 +37,34 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validation for adding user
+        $request->validate([
+            'username' => 'required|string|max:100',
+            'email' => 'required|string|email|unique:users',
+            'password' => 'required|string|min:6|confirmed|alpha_num',
+            'gender' => 'required',
+            'address' => 'required',
+            'birthday' => 'required|date_format:Y-m-d',
+            'profile_picture' => 'required|mimes:jpg,jpeg,png',
+        ]);
+
+        $file = $request['profile_picture'];
+        $filename = $request['username'] . '-' . time() . '-' . $file->getClientOriginalName();
+        $file->storeAs('profile_pictures', $filename, 'public');
+        
+        // the usual way to create new User using Eloquent
+        User::create([
+            'username' => $request['username'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'gender' => $request['gender'],
+            'address' => $request['address'],
+            'profile_picture' => $filename,
+            'role' => 'member',
+            'birthday' => $request['birthday'],
+        ]);
+
+        return redirect()->route('login');
     }
 
     public function login(Request $request){
@@ -83,7 +110,7 @@ class UserController extends Controller
     public function viewQuestion($id)
     {
         $questions = Question::where('user_id', $id)->paginate(10);
-        return view('user/view_user_questions', compact('questions'));
+        return view('user/view_user_questions', compact('questions'), ['user' => $id]);
     }
 
     /**
@@ -108,7 +135,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-
+        
         // get the filename with time, so there will be no duplicate files
         $file = $request['profile_picture'];
         $filename = $request['username'] . '-' . time() . '-' . $file->getClientOriginalName();
@@ -116,17 +143,16 @@ class UserController extends Controller
 
         $request->validate([
             'username' => 'required|string|max:100',
-            'email' => 'required|string|email|unique:users',
+            'email' => 'required|string|email',
             'password' => 'required|string|min:6|confirmed|alpha_num',
             'gender' => 'required',
             'address' => 'required',
-            'role' => 'required',
             'birthday' => 'required|date_format:Y-m-d',
             'profile_picture' => 'required|mimes:jpg,jpeg,png',
         ]);
 
         $user->username = $request->username;
-        $user->email = $request->question_label;
+        $user->email = $request->email;
         $user->password = Hash::make($request['password']);
         $user->gender = $request->gender;
         $user->address = $request->address;
@@ -153,6 +179,6 @@ class UserController extends Controller
 
         $questions = Question::where('question_detail', 'LIKE', "%$search%")->where('user_id', $id)->paginate(10);
 
-        return view('user/view_user_questions', compact('questions'));
+        return view('user/view_user_questions', compact('questions'), ['user' => $id]);
     }
 }

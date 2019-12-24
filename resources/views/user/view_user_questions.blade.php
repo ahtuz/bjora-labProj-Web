@@ -7,9 +7,9 @@
 
         <div class="col-md-8">
 
-        <form method="GET" class="mb-3 w-50" action="{{ route('user_question_search', Auth::id()) }}">
+        <form method="GET" class="mb-3 w-50" action="{{ route('user_question_search', $user) }}">
             <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search by username or question...">
+                <input type="text" name="q" class="form-control" placeholder="Search by question...">
                 <div class="input-group-append">
                     <button class="btn btn-secondary" type="submit">
                         <i class="fa fa-search"></i>

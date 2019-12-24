@@ -65,7 +65,7 @@ class UsersTableSeeder extends Seeder
             [
 	            'username' => "JillStingray",
                 'email' => "jillstingray@email.com",
-                'password' => Hash::make('jillstingray'),
+                'password' => Hash::make('JillStingray'),
                 'gender' => "Female",
                 'address' => "Vallhalla St.",
                 'birthday' => "1999-06-27",
