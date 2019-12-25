@@ -37,4 +37,8 @@ class HomeController extends Controller
 
         return view('/home', compact('questions'));
     }
+
+    public function pageNotFound(){
+        return view('error_page');
+    }
 }

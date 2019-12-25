@@ -107,3 +107,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/question/{id}', 'QuestionController@show')->name('show_question');
 
 Route::get('/search', 'HomeController@searchIndex')->name('home_search');
+
+Route::get('/error', ['as' => 'notfound', 'uses' => 'HomeController@pageNotFound']);
