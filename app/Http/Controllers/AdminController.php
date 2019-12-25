@@ -181,6 +181,15 @@ class AdminController extends Controller
         return redirect()->route('view_users');
     }
 
+    public function change_status(Request $request, $id){
+
+        $question = Question::find($id);
+        $question->status = $request->status;
+        $question->save();
+
+        return redirect()->back();
+    }
+
     public function admin_edit_question($id)
     {
         $labels = Label::all();

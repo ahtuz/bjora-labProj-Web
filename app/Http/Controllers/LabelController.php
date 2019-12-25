@@ -3,6 +3,7 @@
 namespace Bjora\Http\Controllers;
 
 use Bjora\Label;
+use Bjora\Question;
 use Illuminate\Http\Request;
 
 class LabelController extends Controller
@@ -89,6 +90,14 @@ class LabelController extends Controller
      */
     public function destroy($id)
     {
+        // change all affected questions with the deleted label into "Unspecified" (id label = 1) topic/label
+        if ('label_id' != 1) {
+            Question::where('label_id', $id)->update(['label_id' => 1]);
+        } else {
+            // if the deleted label is "Unspecified", delete all remaining "Unspecified" label/topic questions
+            Question::where('label_id', $id)->delete();
+        }
+        
         Label::destroy($id);
         return redirect()->back();
     }
