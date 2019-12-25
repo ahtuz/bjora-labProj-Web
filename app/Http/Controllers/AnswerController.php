@@ -84,6 +84,10 @@ class AnswerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'answer_detail'=>'required',
+        ]);
+
         $answer = Answer::find($id);
         $answer->answer_detail = $request->answer_detail;
         $answer->save();

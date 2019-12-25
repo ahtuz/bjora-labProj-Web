@@ -54,6 +54,10 @@ Route::group(['middleware'=>'isadmin'], function(){
 
     Route::get('admin/user/{id}/inbox', 'AdminController@show_message')->name('admin_view_inbox');
     Route::get('admin/message/{id}/delete', 'AdminController@destroy_message')->name('admin_delete_message');
+
+    Route::get('admin/answer/{id}/update', 'AdminController@edit_answer')->name('admin_edit_answer');
+    Route::post('admin/answer/{id}/update', 'AdminController@update_answer')->name('admin_update_answer');
+    Route::get('admin/answer/{id}/delete', 'AdminController@destroy_answer')->name('admin_delete_answer');
 });
 
 Route::group(['middleware'=>'isloggedin'], function(){

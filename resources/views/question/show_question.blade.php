@@ -112,10 +112,15 @@
                             </div>
                         </div>
                         <div>{{ $a->answer_detail }}</div>
-                        @if( Auth::id() == $a->user_id )
+                        @if( Auth::id() == $a->user_id)
                             <div class="d-flex position-relative justify-content-end mt-1">
                                 <a href="{{ route('edit_answer', $a->id) }}" class="badge badge-success mr-1">Edit</a>
                                 <a href="{{ route('delete_answer', $a->id) }}" class="badge badge-danger">Delete</a>
+                            </div>
+                            @elseif( Auth::user()->role == "admin")
+                            <div class="d-flex position-relative justify-content-end mt-1">
+                                <a href="{{ route('admin_edit_answer', $a->id) }}" class="badge badge-success mr-1">Edit</a>
+                                <a href="{{ route('admin_delete_answer', $a->id) }}" class="badge badge-danger">Delete</a>
                             </div>
                         @endif
                     </div>

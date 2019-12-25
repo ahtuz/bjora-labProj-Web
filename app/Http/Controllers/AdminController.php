@@ -244,4 +244,29 @@ class AdminController extends Controller
         Message::destroy($id);
         return redirect()->back();
     }
+
+    public function edit_answer(Request $request)
+    {
+        $answer = Answer::find($request->id);
+        $question = $answer->question;
+        return view('admin/edit_answer', compact('answer'), compact('question'));
+    }
+
+    public function update_answer(Request $request, $id)
+    {
+        $request->validate([
+            'answer_detail'=>'required',
+        ]);
+
+        $answer = Answer::find($id);
+        $answer->answer_detail = $request->answer_detail;
+        $answer->save();
+        return redirect()->route('show_question', $answer->question_id);
+    }
+
+    public function destroy_answer($id)
+    {
+        Answer::destroy($id);
+        return redirect()->back();
+    }
 }
