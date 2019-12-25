@@ -44,15 +44,15 @@ Route::group(['middleware'=>'isadmin'], function(){
     Route::get('/question/create', 'QuestionController@create')->name('add_question');
     Route::get('/question/{id}', 'QuestionController@show')->name('show_question');
     Route::get('/admin/question', 'AdminController@view_questions')->name('admin_view_questions');
-    Route::get('/admin/question/{id}/update', 'QuestionController@edit')->name('admin_edit_question');
-    Route::post('/admin/question/{id}/update', 'QuestionController@update')->name('admin_update_question');
-    Route::get('/admin/question/{id}/delete', 'QuestionController@destroy')->name('admin_delete_question');
-    Route::post('/admin/question/{id}/change_status', 'QuestionController@change_status')->name('admin_change_status');
+    Route::get('/admin/question/{id}/update', 'AdminController@edit_user_question')->name('admin_edit_question');
+    Route::post('/admin/question/{id}/update', 'AdminController@update_user_question')->name('admin_update_question');
+    Route::get('/admin/question/{id}/delete', 'AdminController@destroy_user_question')->name('admin_delete_question');
+    Route::post('/admin/question/{id}/change_status', 'AdminController@change_status')->name('admin_change_status');
 
-    Route::get('/user/{id}/questions', 'UserController@viewQuestion')->name('view_user_questions');
-    Route::get('/user/{id}/questions/search', 'UserController@searchIndex')->name('user_question_search');
+    Route::get('admin/user/{id}/questions', 'UserController@viewQuestion')->name('admin_view_user_questions');
+    Route::get('admin/user/{id}/questions/search', 'UserController@searchIndex')->name('admin_user_question_search');
 
-    Route::get('/user/{id}/inbox', 'MessageController@show')->name('inbox');
+    Route::get('admin/user/{id}/inbox', 'MessageController@show')->name('admin_view_inbox');
 });
 
 Route::group(['middleware'=>'isloggedin'], function(){

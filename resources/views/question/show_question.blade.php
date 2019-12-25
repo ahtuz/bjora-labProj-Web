@@ -45,6 +45,16 @@
                                         <button type="sumbit" class="text-white align-middle badge badge-pill badge-danger" name="status" value="1">Close</button>
                                     </form>
                                 @endif
+                            @elseif( Auth::id() != $question->user_id )
+                                @if($question->status == 1)
+                                    <div class="d-block">
+                                        <span class="badge badge-pill badge-success">Open</span>
+                                    </div>
+                                @else
+                                    <div class="d-block">
+                                        <span class="badge badge-pill badge-danger">Close</span>
+                                    </div>
+                                @endif
                             @endif
                         @endguest
                     </div>

@@ -10,7 +10,7 @@
                 <div class="card-header">Inbox</div>
                 @foreach($messages as $message)
                     <div class="card-body shadow-sm">
-                        <div class="created_at text-secondary font-italic position-relative d-flex justify-content-end">{{ $message->created_at }}</div>
+                        <div class="created_at text-secondary font-italic position-relative d-flex justify-content-end">{{ $message->created_at->diffForHumans() }}</div>
                         <div class="position-relative d-flex">
                             <div>
                                 <div class="d-inline mr-2">

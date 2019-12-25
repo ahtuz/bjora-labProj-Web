@@ -46,7 +46,7 @@
                             <!-- check if user admin/member -->
                             @if(Auth::user()->role === "admin")
                                 <!-- if user is admin show manage options -->
-                                <li class="nav-item pl-2">
+                                <li class="nav-item pl-2 mt-1">
                                     <div class="dropdown">
                                     <button class="btn btn-outline-light dropdown-toggle btn-sm" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Manage
@@ -57,6 +57,12 @@
                                         <button class="dropdown-item" type="button"><a href="{{ route('view_label') }}" class="text-dark" style="text-decoration:none;">Question Label/Topic</a></button>
                                     </div>
                                     </div>
+                                </li>
+                                <li class="nav-item pl-2">
+                                    <a class="nav-link text-white" href="/user/{{ Auth::id() }}/questions">{{ __('My Question') }}</a>
+                                </li>
+                                <li class="nav-item pl-1">
+                                    <a class="nav-link text-white" href="/user/{{ Auth::id() }}/inbox">{{ __('Inbox') }}</a>
                                 </li>
                             @else
                                 <!-- user is member, show question and inbox -->

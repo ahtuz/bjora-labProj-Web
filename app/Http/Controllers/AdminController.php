@@ -180,9 +180,46 @@ class AdminController extends Controller
         return redirect()->route('view_users');
     }
 
+    public function admin_edit_question($id)
+    {
+        $labels = Label::all();
+        $question = Question::find($id);
+        return view('admin/edit_question', ['question'=>$question], compact('labels'));
+    }
+
     public function view_questions(){
         $questions = Question::paginate(10);
         return view('admin/view_questions', compact('questions'));
     }
+    
+    public function edit_user_question($id)
+    {
+        $labels = Label::all();
+        $question = Question::find($id);
+        return view('admin/edit_question', ['question'=>$question], compact('labels'));
+    }
 
+    public function update_user_question(Request $request, $id)
+    {
+        $request->validate([
+            'question_detail'=>'required',
+            'label_id'=>'required',
+        ]);
+
+        $question = Question::find($id);
+        $user = $question->user_id;
+        $question->question_detail = $request->question_detail;
+        $question->label_id = $request->label_id;
+        $question->save();
+
+        $questions = Question::paginate(10);
+        return view('admin/view_questions', compact('questions'));
+    }
+
+    public function destroy_user_question($id)
+    {
+        Question::destroy($id);
+
+        return redirect()->back();
+    }
 }

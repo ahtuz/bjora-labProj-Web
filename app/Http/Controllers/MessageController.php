@@ -55,9 +55,9 @@ class MessageController extends Controller
      * @param  \Bjora\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function show(Message $message)
+    public function show(Message $message, $id)
     {
-        $messages = Message::where('recipient_id', Auth::id())->paginate(10);
+        $messages = Message::where('recipient_id', $id)->paginate(10);
         return view('message/inbox', compact('messages'));
     }
 

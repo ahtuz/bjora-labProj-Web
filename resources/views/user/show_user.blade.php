@@ -23,10 +23,23 @@
                         </div>
 
                         <!-- validasi edit profile; tampilkan bila user sekarang adalah auth -->
-                        @if( Auth::id() == $user->id )
+                        @if(Auth::id() == $user->id)
                             <div class="d-inline">
                                 <a class="btn btn-primary justify-content-end" href="/user/{{$user->id}}/update" role="button">Edit Profile</a>
                             </div>
+                        @elseif( Auth::user()->role == "admin" )
+                        <div class="d-inline">
+                            <div class="d-block mb-1">
+                                <a class="btn btn-primary justify-content-end" href="/admin/{{$user->id}}/edit" role="button">Edit {{ $user->username }}'s Profile</a>
+                            </div>
+                            <div class="d-block mb-1">
+                                <a class="btn btn-success justify-content-end" href="{{ route('admin_view_user_questions', $user->id) }}" role="button">{{ $user->username }}'s Questions</a>
+                            </div>
+                            <div class="d-block">
+                                <a class="btn btn-secondary justify-content-end" href="{{ route('admin_view_inbox', $user->id) }}" role="button">{{ $user->username }}'s Inbox</a>
+                            </div>
+                        </div>
+                            
                         @endif
 
                     </div>
