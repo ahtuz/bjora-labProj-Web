@@ -6,6 +6,7 @@ use Bjora\Answer;
 use Bjora\Question;
 use Bjora\User;
 use Bjora\Label;
+use Bjora\Message;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -220,6 +221,18 @@ class AdminController extends Controller
     {
         Question::destroy($id);
 
+        return redirect()->back();
+    }
+
+    public function show_message(Message $message, $id)
+    {
+        $messages = Message::where('recipient_id', $id)->paginate(10);
+        return view('admin/inbox', compact('messages'));
+    }
+
+    public function destroy_message($id)
+    {
+        Message::destroy($id);
         return redirect()->back();
     }
 }

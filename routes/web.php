@@ -52,7 +52,8 @@ Route::group(['middleware'=>'isadmin'], function(){
     Route::get('admin/user/{id}/questions', 'UserController@viewQuestion')->name('admin_view_user_questions');
     Route::get('admin/user/{id}/questions/search', 'UserController@searchIndex')->name('admin_user_question_search');
 
-    Route::get('admin/user/{id}/inbox', 'MessageController@show')->name('admin_view_inbox');
+    Route::get('admin/user/{id}/inbox', 'AdminController@show_message')->name('admin_view_inbox');
+    Route::get('admin/message/{id}/delete', 'AdminController@destroy_message')->name('admin_delete_message');
 });
 
 Route::group(['middleware'=>'isloggedin'], function(){
