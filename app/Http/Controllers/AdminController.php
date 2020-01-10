@@ -10,6 +10,7 @@ use Bjora\Message;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -152,40 +153,61 @@ class AdminController extends Controller
     public function update_user(Request $request, $id)
     {
         $user = User::find($id);
+        
+        // if user change profile picture
+        if($request['profile_picture'] != null){
+            // get the filename with time, so there will be no duplicate files
+            $file = $request['profile_picture'];
+            $filename = $request['username'] . '-' . time() . '-' . $file->getClientOriginalName();
+            $file->storeAs('profile_pictures', $filename, 'public');
+            $user->profile_picture = $filename;
+        }
+        
+        if($request['password'] == null){
+            // user did not change password
+            $validator = Validator::make($request->all(), [
+                'username' => 'required|string|max:100',
+                'email' => 'required|string|email',
+                'gender' => 'required',
+                'address' => 'required',
+                'birthday' => 'required|date_format:Y-m-d',
+            ]);
+        }
+        else{
+            // user did change password
+            $validator = Validator::make($request->all(), [
+                'username' => 'required|string|max:100',
+                'email' => 'required|string|email',
+                'password' => 'string|min:6|confirmed|alpha_num',
+                'gender' => 'required',
+                'address' => 'required',
+                'birthday' => 'required|date_format:Y-m-d',
+            ]);
 
-        // get the filename with time, so there will be no duplicate files
-        $file = $request['profile_picture'];
-        $filename = $request['username'] . '-' . time() . '-' . $file->getClientOriginalName();
-        $file->storeAs('profile_pictures', $filename, 'public');
+            $user->password = Hash::make($request['password']);
+        }
 
-        $request->validate([
-            'username' => 'required|string|max:100',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|min:6|confirmed|alpha_num',
-            'gender' => 'required',
-            'address' => 'required',
-            'role' => 'required',
-            'birthday' => 'required|date_format:Y-m-d',
-            'profile_picture' => 'required|mimes:jpg,jpeg,png',
-        ]);
+        if ($validator->fails()) {
+            return redirect()
+                        ->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
 
         $user->username = $request->username;
         $user->email = $request->email;
-        $user->password = Hash::make($request['password']);
         $user->gender = $request->gender;
         $user->address = $request->address;
         $user->birthday = $request->birthday;
-        $user->profile_picture = $filename;
-        $user->role = $request->role;
         $user->save();
 
-        return redirect()->route('view_users');
+        return redirect()->route('view_users')->with('status', 'User successfully updated.');
     }
 
     public function delete_user($id)
     {
         User::destroy($id);
-        return redirect()->route('view_users');
+        return redirect()->route('view_users')->with('status', 'User successfully deleted.');
     }
 
     public function change_status(Request $request, $id){
@@ -194,7 +216,13 @@ class AdminController extends Controller
         $question->status = $request->status;
         $question->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Question\'s status successfully changed.');
+    }
+
+    public function add_question()
+    {
+        $labels = Label::all();
+        return view('question/add_question', compact('labels'));
     }
 
     public function admin_edit_question($id)
@@ -230,14 +258,15 @@ class AdminController extends Controller
         $question->save();
 
         $questions = Question::paginate(10);
-        return view('admin/view_questions', compact('questions'));
+        
+        return redirect()->route('admin_view_questions', compact('questions'))->with('status', 'Question successfully updated.');
     }
 
     public function destroy_user_question($id)
     {
         Question::destroy($id);
 
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Question successfully deleted.');
     }
 
     public function show_message(Message $message, $id)
@@ -249,7 +278,7 @@ class AdminController extends Controller
     public function destroy_message($id)
     {
         Message::destroy($id);
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Message successfully deleted.');
     }
 
     public function edit_answer(Request $request)
@@ -268,12 +297,12 @@ class AdminController extends Controller
         $answer = Answer::find($id);
         $answer->answer_detail = $request->answer_detail;
         $answer->save();
-        return redirect()->route('show_question', $answer->question_id);
+        return redirect()->route('show_question', $answer->question_id)->with('status', 'Answer successfully updated.');
     }
 
     public function destroy_answer($id)
     {
         Answer::destroy($id);
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Answer successfully deleted.');
     }
 }

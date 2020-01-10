@@ -22,6 +22,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
     <link href="/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -90,7 +91,7 @@
                             <!-- show add question if user's role is member -->
                             @if(Auth::user()->role === "member")
                                 <li class="nav-item border border-primary rounded bg-primary">
-                                    <a class="nav-link text-white" href="{{ route('add_question') }}">{{ __('Add Question') }}</a>
+                                    <a class="nav-link text-white" href="{{ route('add_new_question') }}">{{ __('Add Question') }}</a>
                                 </li>
                             @endif
                             <li class="nav-item pl-4 pr-4">

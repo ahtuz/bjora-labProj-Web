@@ -7,6 +7,7 @@ use Bjora\Answer;
 use Bjora\Label;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class QuestionController extends Controller
 {
@@ -17,7 +18,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        dd($labels);
     }
 
     /**
@@ -41,8 +42,8 @@ class QuestionController extends Controller
     {
         // validation for newly added question
         $request->validate([
-            'question_detail'=>'required',
-            'label_id'=>'required',
+            'question_detail' => 'required',
+            'label_id' => 'required',
         ]);
 
         $question = new Question();
@@ -52,7 +53,7 @@ class QuestionController extends Controller
         $question->status = 1;
         $question->save();
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('status', 'Your question have been submitted.');
     }
 
     /**
@@ -90,6 +91,7 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // update for question
         $request->validate([
             'question_detail'=>'required',
             'label_id'=>'required',
@@ -105,6 +107,7 @@ class QuestionController extends Controller
 
     public function change_status(Request $request, $id){
 
+        // function to change status open / close
         $question = Question::find($id);
         $question->status = $request->status;
         $question->save();

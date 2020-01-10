@@ -6,6 +6,12 @@
 
         <div class="col-md-8">
 
+        @if ( session('status') )
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+
         <form method="GET" class="mb-3 w-50" action="{{ route('home_search') }}">
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Search by username or question...">

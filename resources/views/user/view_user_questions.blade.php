@@ -40,31 +40,45 @@
                         <td class="align-middle">{{ $question->user->username }}</td>
                         <td class="align-middle">{{ $question->question_detail }}</td>
                         <td class="align-middle">
-                            @if($question->status == 1)
-                            <form action="{{ route('change_status', $question->id) }}" method="POST">
-                            {{csrf_field()}}
-                                <button type="sumbit" class="btn btn-sm btn-success" name="status" value="0">Open</button>
-                            </form>
+                            @if( Auth::user()->role == "admin" )
+                                @if($question->status == 1)
+                                    <form action="{{ route('admin_change_status', $question->id) }}" method="POST">
+                                    {{csrf_field()}}
+                                        <button type="sumbit" class="btn btn-sm btn-success" name="status" value="0">Open</button>
+                                    </form>
+                                    @else
+                                    <form action="{{ route('admin_change_status', $question->id) }}" method="POST">
+                                    {{csrf_field()}}
+                                        <button type="sumbit" class="btn btn-sm btn-danger" name="status" value="1">Close</button>
+                                    </form>
+                                @endif
                             @else
-                            <form action="{{ route('change_status', $question->id) }}" method="POST">
-                            {{csrf_field()}}
-                                <button type="sumbit" class="btn btn-sm btn-danger" name="status" value="1">Close</button>
-                            </form>
+                                @if($question->status == 1)
+                                    <form action="{{ route('change_status', $question->id) }}" method="POST">
+                                    {{ csrf_field() }}
+                                        <button type="sumbit" class="btn btn-sm btn-success" name="status" value="0">Open</button>
+                                    </form>
+                                    @else
+                                    <form action="{{ route('change_status', $question->id) }}" method="POST">
+                                    {{ csrf_field() }}
+                                        <button type="sumbit" class="btn btn-sm btn-danger" name="status" value="1">Close</button>
+                                    </form>
+                                @endif
                             @endif
                         </td>
                         <td class="align-middle">
                             @if( Auth::id() == $question->user_id )
-                            <div class="d-flex">
-                                <a href="{{ route('show_question', $question->id) }}" class="badge badge-secondary d-inline mr-1">View</a>
-                                <a href="{{ route('edit_question', $question->id) }}" class="badge badge-success d-inline mr-1">Edit</a>
-                                <a href="{{ route('delete_question', $question->id) }}" class="badge badge-danger d-inline">Delete</a>
-                            </div>
+                                <div class="d-flex">
+                                    <a href="{{ route('show_question', $question->id) }}" class="badge badge-secondary d-inline mr-1">View</a>
+                                    <a href="{{ route('edit_question', $question->id) }}" class="badge badge-success d-inline mr-1">Edit</a>
+                                    <a href="{{ route('delete_question', $question->id) }}" class="badge badge-danger d-inline">Delete</a>
+                                </div>
                             @elseif( Auth::user()->role == "admin" )
-                            <div class="d-flex">
-                                <a href="{{ route('show_question', $question->id) }}" class="badge badge-secondary d-inline mr-1">View</a>
-                                <a href="{{ route('admin_edit_question', $question->id) }}" class="badge badge-success d-inline mr-1">Edit</a>
-                                <a href="{{ route('admin_delete_question', $question->id) }}" class="badge badge-danger d-inline">Delete</a>
-                            </div>
+                                <div class="d-flex">
+                                    <a href="{{ route('show_question', $question->id) }}" class="badge badge-secondary d-inline mr-1">View</a>
+                                    <a href="{{ route('admin_edit_question', $question->id) }}" class="badge badge-success d-inline mr-1">Edit</a>
+                                    <a href="{{ route('admin_delete_question', $question->id) }}" class="badge badge-danger d-inline">Delete</a>
+                                </div>
                             @endif
                         </td>
                     </tr>
@@ -72,7 +86,7 @@
             </tbody>
             </table>
             <div class="container m-2">
-                <div class="row justify-content-center">{{ $questions->links() }}</div>                
+                <div class="row justify-content-center">{{ $questions->links() }}</div>
             </div>
         </div>
     </div>

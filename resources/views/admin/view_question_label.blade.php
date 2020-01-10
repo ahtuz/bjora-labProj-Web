@@ -4,6 +4,13 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-7">
+
+            @if ( session('status') )
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+
             <a href="{{ route('add_label') }}">
                 <button type="button" class="btn btn-success btn mb-4">Add New Label</button>
             </a>

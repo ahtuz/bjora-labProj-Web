@@ -93,6 +93,6 @@ class MessageController extends Controller
     public function destroy($id)
     {
         Message::destroy($id);
-        return redirect()->route('inbox', Auth::id());
+        return redirect()->route('inbox', Auth::id())->with('status', 'Message have been deleted.');
     }
 }

@@ -7,7 +7,14 @@
     <div class="row justify-content-center">
         
         <div class="col-md-8">
-        <button type="button" class="btn btn-outline-secondary mb-3"><a href="{{route('add_question')}}" class="text-dark" style="text-decoration:none;">Add New Question</a></button>
+
+        @if ( session('status') )
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+
+        <button type="button" class="btn btn-outline-secondary mb-3"><a href="{{route('admin_add_question')}}" class="text-dark" style="text-decoration:none;">Add New Question</a></button>
         <table class="table table-bordered table-hover">
             <thead class="thead-light">
                 <tr>

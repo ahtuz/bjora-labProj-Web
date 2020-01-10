@@ -5,6 +5,7 @@ namespace Bjora\Http\Controllers;
 use Bjora\Label;
 use Bjora\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class LabelController extends Controller
 {
@@ -37,9 +38,22 @@ class LabelController extends Controller
      */
     public function store(Request $request)
     {
+        // validation add new label
+        $validator = Validator::make($request->all(), [
+            'question_label' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                        ->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        // add the label using model
         Label::firstOrCreate(['question_label' => $request->question_label]);
         $question_labels = Label::paginate(10);
-        return view('/admin/view_question_label', compact('question_labels'));
+        return redirect()->route('view_label')->with('status', 'Label successfully added.');
     }
 
     /**
@@ -74,12 +88,16 @@ class LabelController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'question_label'=>'required',
+        ]);
+
         $label = Label::find($id);
         
         $label->question_label = $request->question_label;
         $label->save();
 
-        return redirect()->route('view_label');
+        return redirect()->route('view_label')->with('status', 'Label successfully updated.');
     }
 
     /**
@@ -99,6 +117,6 @@ class LabelController extends Controller
         }
         
         Label::destroy($id);
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Label successfully deleted.');
     }
 }

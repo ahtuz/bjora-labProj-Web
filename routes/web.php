@@ -42,8 +42,7 @@ Route::group(['middleware'=>'isadmin'], function(){
     Route::get('/admin/label/{id}/update', 'LabelController@edit')->name('edit_label');
     Route::post('/admin/label/{id}', 'LabelController@update')->name('update_label');
 
-    Route::get('/question/create', 'QuestionController@create')->name('add_question');
-    Route::get('/question/{id}', 'QuestionController@show')->name('show_question');
+    Route::get('/admin/question/create', 'AdminController@add_question')->name('admin_add_question');
     Route::get('/admin/question', 'AdminController@view_questions')->name('admin_view_questions');
     Route::get('/admin/question/{id}/update', 'AdminController@edit_user_question')->name('admin_edit_question');
     Route::post('/admin/question/{id}/update', 'AdminController@update_user_question')->name('admin_update_question');
@@ -63,7 +62,7 @@ Route::group(['middleware'=>'isadmin'], function(){
 
 Route::group(['middleware'=>'isloggedin'], function(){
     Route::post('/question/{id}', 'AnswerController@store')->name('add_answer');
-    Route::get('/question/create', 'QuestionController@create')->name('add_question');
+    Route::get('/question/create', 'QuestionController@create')->name('add_new_question');
     Route::post('/question', 'QuestionController@store');
     Route::get('/user/{id}', 'UserController@show')->name('show_user');
     Route::post('/user/{id}', 'MessageController@store')->name('send_message');
