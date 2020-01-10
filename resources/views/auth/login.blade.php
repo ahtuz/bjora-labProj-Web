@@ -4,6 +4,21 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+
+        @if ( session('status') )
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+
+        @if ( $errors->any() )
+            <div class="alert alert-danger">
+                @foreach ( $errors->all() as $error )
+                    {{ $error }}
+                @endforeach
+            </div>
+        @endif
+
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 

@@ -7,6 +7,7 @@ use Bjora\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -38,7 +39,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         // validation for adding user
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'username' => 'required|string|max:100',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|min:6|confirmed|alpha_num',
@@ -48,11 +49,26 @@ class UserController extends Controller
             'profile_picture' => 'required|mimes:jpg,jpeg,png',
         ]);
 
+        // if validation fails redirect back user to fix the inputs
+        if ($validator->fails()) {
+            return redirect()
+                        ->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        /* 
+            Before doing this, we need to command "php artisan storage:link".
+            To store profile_picture to public/storage/profile_pictures folder.
+            With the format username-time-original file name, there will be no duplicate file
+            in the folder.
+        */
+
         $file = $request['profile_picture'];
         $filename = $request['username'] . '-' . time() . '-' . $file->getClientOriginalName();
         $file->storeAs('profile_pictures', $filename, 'public');
         
-        // the usual way to create new User using Eloquent
+        // the usual way to create new User member using Eloquent
         User::create([
             'username' => $request['username'],
             'email' => $request['email'],
@@ -64,7 +80,8 @@ class UserController extends Controller
             'birthday' => $request['birthday'],
         ]);
 
-        return redirect()->route('login');
+        // redirect user after success creating new account
+        return redirect()->route('login')->with('status', 'Register success. You can now login with your account.');
     }
 
     public function login(Request $request){
@@ -80,7 +97,8 @@ class UserController extends Controller
             }
             return $response;
         }
-        return redirect()->back();
+        // if login/attempt failed return back with error message
+        return redirect()->back()->withErrors('Login failed. Please check your username/password.');
     }
 
     public function logout(){
@@ -136,31 +154,54 @@ class UserController extends Controller
     {
         $user = User::find($id);
         
-        // get the filename with time, so there will be no duplicate files
-        $file = $request['profile_picture'];
-        $filename = $request['username'] . '-' . time() . '-' . $file->getClientOriginalName();
-        $file->storeAs('profile_pictures', $filename, 'public');
+        // if user change profile picture
+        if($request['profile_picture'] != null){
+            // get the filename with time, so there will be no duplicate files
+            $file = $request['profile_picture'];
+            $filename = $request['username'] . '-' . time() . '-' . $file->getClientOriginalName();
+            $file->storeAs('profile_pictures', $filename, 'public');
+            $user->profile_picture = $filename;
+        }
 
-        $request->validate([
-            'username' => 'required|string|max:100',
-            'email' => 'required|string|email',
-            'password' => 'required|string|min:6|confirmed|alpha_num',
-            'gender' => 'required',
-            'address' => 'required',
-            'birthday' => 'required|date_format:Y-m-d',
-            'profile_picture' => 'required|mimes:jpg,jpeg,png',
-        ]);
+        if($request['password'] == null){
+            // user did not change password
+            $validator = Validator::make($request->all(), [
+                'username' => 'required|string|max:100',
+                'email' => 'required|string|email',
+                'gender' => 'required',
+                'address' => 'required',
+                'birthday' => 'required|date_format:Y-m-d',
+            ]);
+        }
+        else{
+            // user did change password
+            $validator = Validator::make($request->all(), [
+                'username' => 'required|string|max:100',
+                'email' => 'required|string|email',
+                'password' => 'string|min:6|confirmed|alpha_num',
+                'gender' => 'required',
+                'address' => 'required',
+                'birthday' => 'required|date_format:Y-m-d',
+            ]);
+
+            $user->password = Hash::make($request['password']);
+        }
+
+        if ($validator->fails()) {
+            return redirect()
+                        ->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
 
         $user->username = $request->username;
         $user->email = $request->email;
-        $user->password = Hash::make($request['password']);
         $user->gender = $request->gender;
         $user->address = $request->address;
         $user->birthday = $request->birthday;
-        $user->profile_picture = $filename;
         $user->save();
 
-        return redirect()->route('show_user', $id);
+        return redirect()->route('show_user', $id)->with('status', 'Profile updated.');
     }
 
     /**

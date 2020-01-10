@@ -7,6 +7,12 @@
 
         <div class="col-md-8">
 
+        @if ( session('status') )
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+
         <form method="GET" class="mb-3 w-50" action="{{ route('user_question_search', $user) }}">
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Search by question...">
@@ -20,7 +26,6 @@
             <table class="table table-bordered table-hover">
             <thead class="thead-light">
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Topic</th>
                     <th scope="col">Owner</th>
                     <th scope="col">Question Detail</th>
@@ -31,7 +36,6 @@
             <tbody>
                 @foreach($questions as $question)
                     <tr>
-                        <th scope="row" class="align-middle">{{ $question->id }}</th>
                         <td class="align-middle">{{ $question->label->question_label }}</td>
                         <td class="align-middle">{{ $question->user->username }}</td>
                         <td class="align-middle">{{ $question->question_detail }}</td>

@@ -4,6 +4,13 @@
 <div class="container">
     <button type="button" class="btn btn-outline-secondary ml-5 mb-3"><a href="{{route('add_user')}}" class="text-dark" style="text-decoration:none;">Add New User</a></button>
     <div class="row justify-content-center">
+
+        @if ( session('status') )
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+
         <div class="card">
             <div class="card-body shadow-sm">
                 <div class="d-flex justify-content-between">

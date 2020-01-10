@@ -48,7 +48,7 @@ class AnswerController extends Controller
         $answer->answer_detail = $request->answer_detail;
         $answer->save();
 
-        return redirect()->route('show_question', $request->id);
+        return redirect()->route('show_question', $request->id)->with('status', 'Your answer have been added.');
     }
 
     /**
@@ -91,7 +91,7 @@ class AnswerController extends Controller
         $answer = Answer::find($id);
         $answer->answer_detail = $request->answer_detail;
         $answer->save();
-        return redirect()->route('show_question', $answer->question_id);
+        return redirect()->route('show_question', $answer->question_id)->with('status', 'Your answer have been edited.');
     }
 
     /**
@@ -103,6 +103,6 @@ class AnswerController extends Controller
     public function destroy($id)
     {
         Answer::destroy($id);
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Your answer have been deleted.');
     }
 }

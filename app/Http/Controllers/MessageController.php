@@ -46,7 +46,7 @@ class MessageController extends Controller
         $message->message_detail = $request->message_detail;
         $message->save();
 
-        return redirect()->route('show_user', $request->id);
+        return redirect()->route('show_user', $request->id)->with('status', 'Your message have been sent.');
     }
 
     /**

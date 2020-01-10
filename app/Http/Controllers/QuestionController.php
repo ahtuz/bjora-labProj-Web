@@ -100,7 +100,7 @@ class QuestionController extends Controller
         $question->label_id = $request->label_id;
         $question->save();
 
-        return redirect()->route('view_user_questions', Auth::id());
+        return redirect()->route('view_user_questions', Auth::id())->with('status', 'Your question have been updated.');
     }
 
     public function change_status(Request $request, $id){
@@ -109,7 +109,7 @@ class QuestionController extends Controller
         $question->status = $request->status;
         $question->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Your question\'s status have been updated.');
     }
 
     /**
@@ -121,6 +121,6 @@ class QuestionController extends Controller
     public function destroy($id)
     {
         Question::destroy($id);
-        return redirect()->route('view_user_questions', Auth::id());
+        return redirect()->route('view_user_questions', Auth::id())->with('status', 'Your question have been deleted.');
     }
 }

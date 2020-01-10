@@ -13,6 +13,7 @@
 
 Route::get('/login', function(){
     if(request()->hasCookie('user_cookie')){
+        // handle cookies
         return redirect('/home');
     }
 
@@ -102,7 +103,7 @@ Route::post('/logout', 'UserController@logout')->name('logout');
 
 Route::get('/register', 'UserController@create')->name('register');
 
-Route::post('/register', 'UserController@store');
+Route::post('/register', 'UserController@store')->name('register');
 
 Route::get('/', 'HomeController@index')->name('home');
 

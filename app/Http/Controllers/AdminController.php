@@ -106,7 +106,7 @@ class AdminController extends Controller
     public function store_user(Request $request){
 
         // validation for adding user
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'username' => 'required|string|max:100',
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|min:6|confirmed|alpha_num',
@@ -116,6 +116,13 @@ class AdminController extends Controller
             'birthday' => 'required|date_format:Y-m-d',
             'profile_picture' => 'required|mimes:jpg,jpeg,png',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                        ->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
 
         $file = $request['profile_picture'];
         $filename = $request['username'] . '-' . time() . '-' . $file->getClientOriginalName();
@@ -133,7 +140,7 @@ class AdminController extends Controller
             'birthday' => $request['birthday'],
         ]);
 
-        return redirect()->route('view_users');
+        return redirect()->route('view_users')->with('status', 'User created successfully.');
     }
 
     public function edit_user($id)

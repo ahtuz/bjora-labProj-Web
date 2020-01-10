@@ -18,6 +18,14 @@
         </form>
             <div class="card">
                 <div class="card-header">Questions</div>
+
+                @if( $questions->isEmpty() )
+                    <!-- show this message when no question -->
+                    <div class="card-body shadow-sm">
+                        <h3 class="text-dark">No Question Found...</h3>
+                    </div>
+                @endif
+
                 @foreach($questions as $question)
                     <div class="card-body shadow-sm">
                         <div class="position-relative d-flex justify-content-end font-weight-bold text-danger">{{ $question->label->question_label }}</div>

@@ -4,6 +4,13 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+
+        @if ( session('status') )
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+
             <div class="card">
                 <div class="card-body shadow-sm">
                     <div class="d-flex justify-content-between">
@@ -72,11 +79,14 @@
                 </div>
             </div>
             @guest
+            <!-- guest cannot add answer -->
 
             @else
-                @if( Auth::id() == $question->user->id )
+                @if( Auth::id() == $question->user->id ) 
+                <!-- owner cannot answer own questions -->
                     @else
                         @if( $question->status == 1)
+                        <!-- check status question is open -->
                             <br>
                             <div class="card">
                                 <div class="card-header">Add Your Answer</div>
@@ -96,8 +106,15 @@
                 @endif
             @endguest
             <br>
+
             <div class="card">
                 <div class="card-header">Answers</div>
+
+                @if( $answer->isEmpty() )
+                    <!-- show this when answer is empty -->
+                    <div class="card-body shadow-sm">No Answer Yet...</div>
+                @endif
+
                 @foreach ( $answer as $a )
                     <div class="card-body shadow-sm">
                         <div class="d-flex mb-3">
@@ -111,21 +128,30 @@
                                 </div>
                             </div>
                         </div>
+
                         <div>{{ $a->answer_detail }}</div>
-                        @if( Auth::id() == $a->user_id)
-                            <div class="d-flex position-relative justify-content-end mt-1">
-                                <a href="{{ route('edit_answer', $a->id) }}" class="badge badge-success mr-1">Edit</a>
-                                <a href="{{ route('delete_answer', $a->id) }}" class="badge badge-danger">Delete</a>
-                            </div>
-                            @elseif( Auth::user()->role == "admin")
-                            <div class="d-flex position-relative justify-content-end mt-1">
-                                <a href="{{ route('admin_edit_answer', $a->id) }}" class="badge badge-success mr-1">Edit</a>
-                                <a href="{{ route('admin_delete_answer', $a->id) }}" class="badge badge-danger">Delete</a>
-                            </div>
-                        @endif
+
+                        @guest
+                        <!-- guest see nothing -->
+
+                        @else
+                        <!-- other users: owner / admin can edit / delete -->
+                            @if( Auth::id() == $a->user_id)
+                                <div class="d-flex position-relative justify-content-end mt-1">
+                                    <a href="{{ route('edit_answer', $a->id) }}" class="badge badge-success mr-1">Edit</a>
+                                    <a href="{{ route('delete_answer', $a->id) }}" class="badge badge-danger">Delete</a>
+                                </div>
+                                @elseif( Auth::user()->role == "admin")
+                                <div class="d-flex position-relative justify-content-end mt-1">
+                                    <a href="{{ route('admin_edit_answer', $a->id) }}" class="badge badge-success mr-1">Edit</a>
+                                    <a href="{{ route('admin_delete_answer', $a->id) }}" class="badge badge-danger">Delete</a>
+                                </div>
+                            @endif
+                        @endguest
                     </div>
                 @endforeach
             </div>
+
         </div>
     </div>
 </div>

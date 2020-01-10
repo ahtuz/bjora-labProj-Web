@@ -50,7 +50,6 @@ class RegisterController extends Controller
     {
 
         // Validation for newly registered user
-        
         return Validator::make($data, [
             'username' => 'required|string|max:100',
             'email' => 'required|string|email|unique:users',
